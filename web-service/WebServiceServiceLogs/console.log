@@ -1,0 +1,777 @@
+2022-05-08 15:46:53.697 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:55 - Starting WebServiceApplicationTests using Java 18 on suzutsuki with PID 9743 (started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 15:46:53.698 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:640 - No active profile set, falling back to 1 default profile: "default"
+2022-05-08 15:46:54.053 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-08 15:46:54.053 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 15:46:54.128 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 72 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 15:46:54.129 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-08 15:46:54.129 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-05-08 15:46:54.132 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 3 ms. Found 0 MongoDB repository interfaces.
+2022-05-08 15:46:54.289 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-08 15:46:54.289 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data Reactive MongoDB repositories in DEFAULT mode.
+2022-05-08 15:46:54.293 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.AdminInfoRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:46:54.294 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.DictionaryRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:46:54.294 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.ExchangeRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:46:54.295 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.InventoryRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:46:54.295 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.UserInfoRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:46:54.298 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 8 ms. Found 1 Reactive MongoDB repository interfaces.
+2022-05-08 15:46:54.441 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 15:46:54.860 [main] INFO  org.mongodb.driver.cluster:71 - Cluster created with settings {hosts=[127.0.0.1:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-05-08 15:46:55.045 [cluster-ClusterId{value='6277756e6c9eb00e21da0f78', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.connection:71 - Opened connection [connectionId{localValue:2, serverValue:1}] to 127.0.0.1:27017
+2022-05-08 15:46:55.045 [cluster-rtt-ClusterId{value='6277756e6c9eb00e21da0f78', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.connection:71 - Opened connection [connectionId{localValue:1, serverValue:2}] to 127.0.0.1:27017
+2022-05-08 15:46:55.045 [cluster-ClusterId{value='6277756e6c9eb00e21da0f78', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.cluster:71 - Monitor thread successfully connected to server with description ServerDescription{address=127.0.0.1:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=109133917}
+2022-05-08 15:46:55.620 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 15:46:55.766 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:61 - Started WebServiceApplicationTests in 2.533 seconds (JVM running for 2.932)
+2022-05-08 15:47:46.089 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:55 - Starting WebServiceApplicationTests using Java 18 on suzutsuki with PID 9778 (started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 15:47:46.091 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:640 - No active profile set, falling back to 1 default profile: "default"
+2022-05-08 15:47:46.758 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-08 15:47:46.759 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 15:47:46.825 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 63 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 15:47:46.825 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-08 15:47:46.825 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-05-08 15:47:46.828 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 2 ms. Found 0 MongoDB repository interfaces.
+2022-05-08 15:47:47.178 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-08 15:47:47.179 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data Reactive MongoDB repositories in DEFAULT mode.
+2022-05-08 15:47:47.183 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.AdminInfoRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:47:47.184 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.DictionaryRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:47:47.184 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.ExchangeRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:47:47.184 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.InventoryRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:47:47.185 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.UserInfoRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:47:47.187 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 8 ms. Found 1 Reactive MongoDB repository interfaces.
+2022-05-08 15:47:47.371 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 15:47:47.803 [main] INFO  org.mongodb.driver.cluster:71 - Cluster created with settings {hosts=[127.0.0.1:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-05-08 15:47:47.903 [cluster-ClusterId{value='627775a38990843ce8a9a0e5', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.connection:71 - Opened connection [connectionId{localValue:1, serverValue:3}] to 127.0.0.1:27017
+2022-05-08 15:47:47.903 [cluster-rtt-ClusterId{value='627775a38990843ce8a9a0e5', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.connection:71 - Opened connection [connectionId{localValue:2, serverValue:4}] to 127.0.0.1:27017
+2022-05-08 15:47:47.903 [cluster-ClusterId{value='627775a38990843ce8a9a0e5', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.cluster:71 - Monitor thread successfully connected to server with description ServerDescription{address=127.0.0.1:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=31594708}
+2022-05-08 15:47:48.561 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 15:47:48.719 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:61 - Started WebServiceApplicationTests in 3.035 seconds (JVM running for 3.389)
+2022-05-08 15:49:20.823 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:55 - Starting WebServiceApplicationTests using Java 18 on suzutsuki with PID 9871 (started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 15:49:20.825 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:640 - No active profile set, falling back to 1 default profile: "default"
+2022-05-08 15:49:21.180 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-08 15:49:21.180 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 15:49:21.243 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 60 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 15:49:21.244 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-08 15:49:21.244 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-05-08 15:49:21.247 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 3 ms. Found 0 MongoDB repository interfaces.
+2022-05-08 15:49:21.406 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-08 15:49:21.407 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data Reactive MongoDB repositories in DEFAULT mode.
+2022-05-08 15:49:21.411 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.AdminInfoRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:49:21.411 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.DictionaryRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:49:21.412 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.ExchangeRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:49:21.412 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.InventoryRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:49:21.412 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.UserInfoRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:49:21.415 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 8 ms. Found 1 Reactive MongoDB repository interfaces.
+2022-05-08 15:49:21.545 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 15:49:21.934 [main] INFO  org.mongodb.driver.cluster:71 - Cluster created with settings {hosts=[127.0.0.1:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-05-08 15:49:22.035 [cluster-ClusterId{value='62777601f5233a0a9a1d8085', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.connection:71 - Opened connection [connectionId{localValue:1, serverValue:5}] to 127.0.0.1:27017
+2022-05-08 15:49:22.035 [cluster-rtt-ClusterId{value='62777601f5233a0a9a1d8085', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.connection:71 - Opened connection [connectionId{localValue:2, serverValue:6}] to 127.0.0.1:27017
+2022-05-08 15:49:22.035 [cluster-ClusterId{value='62777601f5233a0a9a1d8085', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.cluster:71 - Monitor thread successfully connected to server with description ServerDescription{address=127.0.0.1:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=25768208}
+2022-05-08 15:49:22.705 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 15:49:22.839 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:61 - Started WebServiceApplicationTests in 2.446 seconds (JVM running for 2.817)
+2022-05-08 15:57:05.965 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:55 - Starting WebServiceApplicationTests using Java 18 on suzutsuki with PID 9944 (started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 15:57:05.966 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:640 - No active profile set, falling back to 1 default profile: "default"
+2022-05-08 15:57:06.287 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-08 15:57:06.287 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 15:57:06.344 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 54 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 15:57:06.344 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-08 15:57:06.345 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-05-08 15:57:06.347 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 2 ms. Found 0 MongoDB repository interfaces.
+2022-05-08 15:57:06.484 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-08 15:57:06.485 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data Reactive MongoDB repositories in DEFAULT mode.
+2022-05-08 15:57:06.489 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.AdminInfoRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:57:06.490 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.DictionaryRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:57:06.490 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.ExchangeRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:57:06.490 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.InventoryRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:57:06.491 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.UserInfoRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 15:57:06.493 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 7 ms. Found 1 Reactive MongoDB repository interfaces.
+2022-05-08 15:57:06.661 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 15:57:07.084 [main] INFO  org.mongodb.driver.cluster:71 - Cluster created with settings {hosts=[127.0.0.1:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-05-08 15:57:07.171 [cluster-rtt-ClusterId{value='627777d355930a639bd58831', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.connection:71 - Opened connection [connectionId{localValue:1, serverValue:8}] to 127.0.0.1:27017
+2022-05-08 15:57:07.171 [cluster-ClusterId{value='627777d355930a639bd58831', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.connection:71 - Opened connection [connectionId{localValue:2, serverValue:7}] to 127.0.0.1:27017
+2022-05-08 15:57:07.172 [cluster-ClusterId{value='627777d355930a639bd58831', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.cluster:71 - Monitor thread successfully connected to server with description ServerDescription{address=127.0.0.1:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=26348250}
+2022-05-08 15:57:07.867 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 15:57:08.008 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:61 - Started WebServiceApplicationTests in 2.461 seconds (JVM running for 2.867)
+2022-05-08 16:20:03.097 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:55 - Starting WebServiceApplicationTests using Java 18 on suzutsuki with PID 11197 (started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 16:20:03.098 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:640 - No active profile set, falling back to 1 default profile: "default"
+2022-05-08 16:20:03.476 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-08 16:20:03.476 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 16:20:03.537 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 59 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 16:20:03.538 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-08 16:20:03.538 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-05-08 16:20:03.541 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 2 ms. Found 0 MongoDB repository interfaces.
+2022-05-08 16:20:03.677 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-05-08 16:20:03.678 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data Reactive MongoDB repositories in DEFAULT mode.
+2022-05-08 16:20:03.682 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.AdminInfoRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 16:20:03.683 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.DictionaryRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 16:20:03.683 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.ExchangeRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 16:20:03.683 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.InventoryRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 16:20:03.684 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport:349 - Spring Data Reactive MongoDB - Could not safely identify store assignment for repository candidate interface com.escambia.official.webservice.repository.UserInfoRepository. If you want this repository to be a Reactive MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.ReactiveMongoRepository.
+2022-05-08 16:20:03.686 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 8 ms. Found 1 Reactive MongoDB repository interfaces.
+2022-05-08 16:20:03.940 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 16:20:04.460 [main] INFO  org.mongodb.driver.cluster:71 - Cluster created with settings {hosts=[127.0.0.1:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-05-08 16:20:04.557 [cluster-ClusterId{value='62777d34fde16c5dd83c1076', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.connection:71 - Opened connection [connectionId{localValue:2, serverValue:9}] to 127.0.0.1:27017
+2022-05-08 16:20:04.558 [cluster-ClusterId{value='62777d34fde16c5dd83c1076', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.cluster:71 - Monitor thread successfully connected to server with description ServerDescription{address=127.0.0.1:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=31334417}
+2022-05-08 16:20:04.558 [cluster-rtt-ClusterId{value='62777d34fde16c5dd83c1076', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.connection:71 - Opened connection [connectionId{localValue:1, serverValue:10}] to 127.0.0.1:27017
+2022-05-08 16:20:05.263 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 16:20:05.424 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:61 - Started WebServiceApplicationTests in 2.745 seconds (JVM running for 3.106)
+2022-05-08 16:36:44.015 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:55 - Starting WebServiceApplication using Java 18 on suzutsuki with PID 11989 (/Users/mingchang/GitHub/Service/web-service/target/classes started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 16:36:44.016 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:640 - No active profile set, falling back to 1 default profile: "default"
+2022-05-08 16:36:44.035 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-05-08 16:36:44.036 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-05-08 16:36:44.279 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 16:36:44.312 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 30 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 16:36:44.553 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 16:36:44.787 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer:58 - LiveReload server is running on port 35729
+2022-05-08 16:36:45.195 [restartedMain] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 16:36:45.342 [restartedMain] INFO  o.s.boot.web.embedded.netty.NettyWebServer:111 - Netty started on port 8080
+2022-05-08 16:36:45.350 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:61 - Started WebServiceApplication in 1.739 seconds (JVM running for 2.021)
+2022-05-08 16:38:54.560 [SpringApplicationShutdownHook] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:53 - Commencing graceful shutdown. Waiting for active requests to complete
+2022-05-08 16:38:54.563 [netty-shutdown] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:62 - Graceful shutdown complete
+2022-05-08 16:38:58.549 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:55 - Starting WebServiceApplication using Java 18 on suzutsuki with PID 12114 (/Users/mingchang/GitHub/Service/web-service/target/classes started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 16:38:58.549 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:640 - No active profile set, falling back to 1 default profile: "default"
+2022-05-08 16:38:58.573 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-05-08 16:38:58.573 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-05-08 16:38:58.796 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 16:38:58.826 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 27 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 16:38:59.045 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 16:38:59.152 [restartedMain] WARN  o.s.b.w.r.c.AnnotationConfigReactiveWebServerApplicationContext:591 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'inventoryController' defined in file [/Users/mingchang/GitHub/Service/web-service/target/classes/com/escambia/official/webservice/controller/InventoryController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'inventoryServiceImpl' defined in file [/Users/mingchang/GitHub/Service/web-service/target/classes/com/escambia/official/webservice/service/impl/InventoryServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'inventoryRepository' defined in com.escambia.official.webservice.repository.InventoryRepository defined in @EnableR2dbcRepositories declared on WebServiceApplication: Cannot resolve reference to bean 'r2dbcEntityTemplate' while setting bean property 'entityOperations'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.data.r2dbc.R2dbcDataAutoConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'r2dbcDatabaseClient' defined in class path resource [org/springframework/boot/autoconfigure/r2dbc/ConnectionFactoryDependentConfiguration.class]: Unsatisfied dependency expressed through method 'r2dbcDatabaseClient' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'connectionFactory' defined in class path resource [org/springframework/boot/autoconfigure/r2dbc/ConnectionFactoryConfigurations$PoolConfiguration$PooledConnectionFactoryConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [io.r2dbc.pool.ConnectionPool]: Factory method 'connectionFactory' threw exception; nested exception is org.springframework.boot.autoconfigure.r2dbc.ConnectionFactoryOptionsInitializer$ConnectionFactoryBeanCreationException: Failed to determine a suitable R2DBC Connection URL
+2022-05-08 16:38:59.162 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener:136 - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-05-08 16:38:59.169 [restartedMain] ERROR o.s.b.diagnostics.LoggingFailureAnalysisReporter:40 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a ConnectionFactory: 'url' attribute is not specified and no embedded database could be configured.
+
+Reason: Failed to determine a suitable R2DBC Connection URL
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
+2022-05-08 16:40:10.272 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:55 - Starting WebServiceApplication using Java 18 on suzutsuki with PID 12148 (/Users/mingchang/GitHub/Service/web-service/target/classes started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 16:40:10.273 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:646 - The following 1 profile is active: "dev"
+2022-05-08 16:40:10.298 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-05-08 16:40:10.298 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-05-08 16:40:10.543 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 16:40:10.570 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 25 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 16:40:10.788 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 16:40:10.872 [restartedMain] WARN  o.s.b.w.r.c.AnnotationConfigReactiveWebServerApplicationContext:591 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationManager' defined in file [/Users/mingchang/GitHub/Service/web-service/target/classes/com/escambia/official/webservice/config/AuthenticationManager.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jwtUtility': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'jjwt.secret' in value "${jjwt.secret}"
+2022-05-08 16:40:10.881 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener:136 - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-05-08 16:40:10.889 [restartedMain] ERROR org.springframework.boot.SpringApplication:830 - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationManager' defined in file [/Users/mingchang/GitHub/Service/web-service/target/classes/com/escambia/official/webservice/config/AuthenticationManager.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jwtUtility': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'jjwt.secret' in value "${jjwt.secret}"
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext.refresh(ReactiveWebServerApplicationContext.java:64)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at com.escambia.official.webservice.WebServiceApplication.main(WebServiceApplication.java:42)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jwtUtility': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'jjwt.secret' in value "${jjwt.secret}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:405)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 22 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'jjwt.secret' in value "${jjwt.secret}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180)
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:936)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1330)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	... 34 common frames omitted
+2022-05-08 16:40:39.251 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:55 - Starting WebServiceApplication using Java 18 on suzutsuki with PID 12161 (/Users/mingchang/GitHub/Service/web-service/target/classes started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 16:40:39.252 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:646 - The following 1 profile is active: "dev"
+2022-05-08 16:40:39.273 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-05-08 16:40:39.273 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-05-08 16:40:39.527 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 16:40:39.558 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 28 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 16:40:39.783 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 16:40:40.006 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer:58 - LiveReload server is running on port 35729
+2022-05-08 16:40:40.393 [restartedMain] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 16:40:40.538 [restartedMain] INFO  o.s.boot.web.embedded.netty.NettyWebServer:111 - Netty started on port 8080
+2022-05-08 16:40:40.546 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:61 - Started WebServiceApplication in 1.713 seconds (JVM running for 1.949)
+2022-05-08 16:48:29.484 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:55 - Starting WebServiceApplication using Java 18 on suzutsuki with PID 12326 (/Users/mingchang/GitHub/Service/web-service/target/classes started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 16:48:29.485 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:646 - The following 1 profile is active: "dev"
+2022-05-08 16:48:29.505 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-05-08 16:48:29.505 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-05-08 16:48:29.752 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 16:48:29.780 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 26 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 16:48:29.994 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 16:48:30.211 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer:58 - LiveReload server is running on port 35729
+2022-05-08 16:48:30.588 [restartedMain] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 16:48:30.732 [restartedMain] INFO  o.s.boot.web.embedded.netty.NettyWebServer:111 - Netty started on port 8080
+2022-05-08 16:48:30.740 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:61 - Started WebServiceApplication in 1.631 seconds (JVM running for 1.969)
+2022-05-08 19:21:03.100 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:55 - Starting WebServiceApplicationTests using Java 18 on suzutsuki.local with PID 13383 (started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 19:21:03.101 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:640 - No active profile set, falling back to 1 default profile: "default"
+2022-05-08 19:21:03.586 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 19:21:03.664 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 75 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 19:21:04.146 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 19:21:04.196 [main] WARN  o.s.b.w.r.c.GenericReactiveWebApplicationContext:591 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationManager' defined in file [/Users/mingchang/GitHub/Service/web-service/target/classes/com/escambia/official/webservice/config/AuthenticationManager.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jwtUtility': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'jjwt.secret' in value "${jjwt.secret}"
+2022-05-08 19:21:04.206 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener:136 - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-05-08 19:21:04.220 [main] ERROR org.springframework.boot.SpringApplication:830 - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationManager' defined in file [/Users/mingchang/GitHub/Service/web-service/target/classes/com/escambia/official/webservice/config/AuthenticationManager.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jwtUtility': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'jjwt.secret' in value "${jjwt.secret}"
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:144)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:118)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener.prepareTestInstance(SpringBootDependencyInjectionTestExecutionListener.java:43)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:248)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:138)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$8(ClassBasedTestDescriptor.java:363)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:368)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$9(ClassBasedTestDescriptor.java:363)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:362)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:283)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:282)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:272)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:271)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:102)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:101)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:66)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:220)
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$6(DefaultLauncher.java:188)
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:202)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:181)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:128)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jwtUtility': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'jjwt.secret' in value "${jjwt.secret}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:405)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 86 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'jjwt.secret' in value "${jjwt.secret}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180)
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:936)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1330)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	... 98 common frames omitted
+2022-05-08 19:21:04.249 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:55 - Starting WebServiceApplicationTests using Java 18 on suzutsuki.local with PID 13383 (started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 19:21:04.250 [main] INFO  c.e.official.webservice.WebServiceApplicationTests:640 - No active profile set, falling back to 1 default profile: "default"
+2022-05-08 19:21:04.332 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 19:21:04.341 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 8 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 19:21:04.441 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 19:21:04.479 [main] WARN  o.s.b.w.r.c.GenericReactiveWebApplicationContext:591 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationManager' defined in file [/Users/mingchang/GitHub/Service/web-service/target/classes/com/escambia/official/webservice/config/AuthenticationManager.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jwtUtility': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'jjwt.secret' in value "${jjwt.secret}"
+2022-05-08 19:21:04.483 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener:136 - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-05-08 19:21:04.484 [main] ERROR org.springframework.boot.SpringApplication:830 - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationManager' defined in file [/Users/mingchang/GitHub/Service/web-service/target/classes/com/escambia/official/webservice/config/AuthenticationManager.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jwtUtility': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'jjwt.secret' in value "${jjwt.secret}"
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:144)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
+	at org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener.outputConditionEvaluationReport(SpringBootDependencyInjectionTestExecutionListener.java:53)
+	at org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener.prepareTestInstance(SpringBootDependencyInjectionTestExecutionListener.java:46)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:248)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:138)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$8(ClassBasedTestDescriptor.java:363)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:368)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$9(ClassBasedTestDescriptor.java:363)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:362)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:283)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:282)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:272)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:271)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:102)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:101)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:66)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:220)
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$6(DefaultLauncher.java:188)
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:202)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:181)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:128)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jwtUtility': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'jjwt.secret' in value "${jjwt.secret}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:405)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 85 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'jjwt.secret' in value "${jjwt.secret}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180)
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:936)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1330)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	... 97 common frames omitted
+2022-05-08 19:21:04.485 [main] ERROR o.springframework.test.context.TestContextManager:252 - Caught exception while allowing TestExecutionListener [org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@1ab06251] to prepare test instance [com.escambia.official.webservice.WebServiceApplicationTests@30c93896]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:132)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:118)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener.prepareTestInstance(SpringBootDependencyInjectionTestExecutionListener.java:43)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:248)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:138)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$8(ClassBasedTestDescriptor.java:363)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:368)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$9(ClassBasedTestDescriptor.java:363)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:362)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:283)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:282)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:272)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:271)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:102)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:101)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:66)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:220)
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$6(DefaultLauncher.java:188)
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:202)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:181)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:128)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationManager' defined in file [/Users/mingchang/GitHub/Service/web-service/target/classes/com/escambia/official/webservice/config/AuthenticationManager.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jwtUtility': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'jjwt.secret' in value "${jjwt.secret}"
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:144)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	... 68 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jwtUtility': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'jjwt.secret' in value "${jjwt.secret}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:405)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 86 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'jjwt.secret' in value "${jjwt.secret}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180)
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:936)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1330)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	... 98 common frames omitted
+2022-05-08 20:03:53.926 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:55 - Starting WebServiceApplication using Java 18 on suzutsuki.local with PID 13937 (/Users/mingchang/GitHub/Service/web-service/target/classes started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 20:03:53.927 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:646 - The following 1 profile is active: "dev"
+2022-05-08 20:03:53.950 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-05-08 20:03:53.950 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-05-08 20:03:54.228 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 20:03:54.259 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 29 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 20:03:54.508 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 20:03:54.770 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer:58 - LiveReload server is running on port 35729
+2022-05-08 20:03:55.159 [restartedMain] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 20:03:55.313 [restartedMain] INFO  o.s.boot.web.embedded.netty.NettyWebServer:111 - Netty started on port 8080
+2022-05-08 20:03:55.322 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:61 - Started WebServiceApplication in 1.791 seconds (JVM running for 2.088)
+2022-05-08 20:04:03.258 [parallel-5] INFO  org.springdoc.api.AbstractOpenApiResource:359 - Init duration for springdoc-openapi is: 121 ms
+2022-05-08 20:04:18.368 [SpringApplicationShutdownHook] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:53 - Commencing graceful shutdown. Waiting for active requests to complete
+2022-05-08 20:04:18.371 [netty-shutdown] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:62 - Graceful shutdown complete
+2022-05-08 20:04:22.348 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:55 - Starting WebServiceApplication using Java 18 on suzutsuki.local with PID 14048 (/Users/mingchang/GitHub/Service/web-service/target/classes started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 20:04:22.348 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:646 - The following 1 profile is active: "dev"
+2022-05-08 20:04:22.371 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-05-08 20:04:22.371 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-05-08 20:04:22.624 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 20:04:22.656 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 28 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 20:04:22.900 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 20:04:23.131 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer:58 - LiveReload server is running on port 35729
+2022-05-08 20:04:23.591 [restartedMain] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 20:04:23.742 [restartedMain] INFO  o.s.boot.web.embedded.netty.NettyWebServer:111 - Netty started on port 8080
+2022-05-08 20:04:23.751 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:61 - Started WebServiceApplication in 1.787 seconds (JVM running for 2.05)
+2022-05-08 20:04:26.207 [parallel-5] INFO  org.springdoc.api.AbstractOpenApiResource:359 - Init duration for springdoc-openapi is: 110 ms
+2022-05-08 20:05:14.689 [Thread-4] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:53 - Commencing graceful shutdown. Waiting for active requests to complete
+2022-05-08 20:05:14.695 [netty-shutdown] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:62 - Graceful shutdown complete
+2022-05-08 20:05:16.903 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:55 - Starting WebServiceApplication using Java 18 on suzutsuki.local with PID 14048 (/Users/mingchang/GitHub/Service/web-service/target/classes started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 20:05:16.904 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:646 - The following 1 profile is active: "dev"
+2022-05-08 20:05:16.973 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 20:05:16.980 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 6 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 20:05:17.036 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 20:05:17.079 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer:58 - LiveReload server is running on port 35729
+2022-05-08 20:05:17.256 [restartedMain] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 20:05:17.303 [restartedMain] INFO  o.s.boot.web.embedded.netty.NettyWebServer:111 - Netty started on port 8080
+2022-05-08 20:05:17.307 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:61 - Started WebServiceApplication in 0.423 seconds (JVM running for 55.606)
+2022-05-08 20:05:17.308 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener:63 - Condition evaluation unchanged
+2022-05-08 20:05:18.713 [Thread-21] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:53 - Commencing graceful shutdown. Waiting for active requests to complete
+2022-05-08 20:05:18.714 [netty-shutdown] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:62 - Graceful shutdown complete
+2022-05-08 20:05:20.850 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:55 - Starting WebServiceApplication using Java 18 on suzutsuki.local with PID 14048 (/Users/mingchang/GitHub/Service/web-service/target/classes started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 20:05:20.851 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:646 - The following 1 profile is active: "dev"
+2022-05-08 20:05:20.909 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 20:05:20.914 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 4 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 20:05:20.961 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 20:05:21.000 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer:58 - LiveReload server is running on port 35729
+2022-05-08 20:05:21.151 [restartedMain] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 20:05:21.197 [restartedMain] INFO  o.s.boot.web.embedded.netty.NettyWebServer:111 - Netty started on port 8080
+2022-05-08 20:05:21.201 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:61 - Started WebServiceApplication in 0.371 seconds (JVM running for 59.501)
+2022-05-08 20:05:21.202 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener:63 - Condition evaluation unchanged
+2022-05-08 20:05:36.738 [parallel-5] INFO  org.springdoc.api.AbstractOpenApiResource:359 - Init duration for springdoc-openapi is: 45 ms
+2022-05-08 21:05:02.355 [SpringApplicationShutdownHook] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:53 - Commencing graceful shutdown. Waiting for active requests to complete
+2022-05-08 21:05:02.358 [netty-shutdown] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:62 - Graceful shutdown complete
+2022-05-08 21:55:49.780 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:55 - Starting WebServiceApplication using Java 18 on suzutsuki with PID 15174 (/Users/mingchang/GitHub/Service/web-service/target/classes started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 21:55:49.780 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:646 - The following 1 profile is active: "dev"
+2022-05-08 21:55:49.803 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-05-08 21:55:49.804 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-05-08 21:55:50.078 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 21:55:50.111 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 31 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 21:55:50.352 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 21:55:50.592 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer:58 - LiveReload server is running on port 35729
+2022-05-08 21:55:50.981 [restartedMain] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 21:55:51.138 [restartedMain] INFO  o.s.boot.web.embedded.netty.NettyWebServer:111 - Netty started on port 8080
+2022-05-08 21:55:51.146 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:61 - Started WebServiceApplication in 1.772 seconds (JVM running for 2.068)
+2022-05-08 21:56:50.671 [SpringApplicationShutdownHook] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:53 - Commencing graceful shutdown. Waiting for active requests to complete
+2022-05-08 21:56:50.679 [netty-shutdown] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:62 - Graceful shutdown complete
+2022-05-08 21:56:54.616 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:55 - Starting WebServiceApplication using Java 18 on suzutsuki with PID 15292 (/Users/mingchang/GitHub/Service/web-service/target/classes started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 21:56:54.616 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:646 - The following 1 profile is active: "dev"
+2022-05-08 21:56:54.638 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-05-08 21:56:54.638 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-05-08 21:56:54.890 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 21:56:54.920 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 28 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 21:56:55.145 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 21:56:55.372 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer:58 - LiveReload server is running on port 35729
+2022-05-08 21:56:55.749 [restartedMain] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 21:56:55.901 [restartedMain] INFO  o.s.boot.web.embedded.netty.NettyWebServer:111 - Netty started on port 8080
+2022-05-08 21:56:55.910 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:61 - Started WebServiceApplication in 1.761 seconds (JVM running for 2.13)
+2022-05-08 21:59:07.042 [SpringApplicationShutdownHook] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:53 - Commencing graceful shutdown. Waiting for active requests to complete
+2022-05-08 21:59:07.045 [netty-shutdown] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:62 - Graceful shutdown complete
+2022-05-08 21:59:11.422 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:55 - Starting WebServiceApplication using Java 18 on suzutsuki with PID 15414 (/Users/mingchang/GitHub/Service/web-service/target/classes started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 21:59:11.422 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:646 - The following 1 profile is active: "dev"
+2022-05-08 21:59:11.442 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-05-08 21:59:11.442 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-05-08 21:59:11.690 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 21:59:11.722 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 29 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 21:59:11.942 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 21:59:12.171 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer:58 - LiveReload server is running on port 35729
+2022-05-08 21:59:12.548 [restartedMain] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 21:59:12.711 [restartedMain] INFO  o.s.boot.web.embedded.netty.NettyWebServer:111 - Netty started on port 8080
+2022-05-08 21:59:12.721 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:61 - Started WebServiceApplication in 1.708 seconds (JVM running for 1.967)
+2022-05-08 21:59:57.317 [parallel-5] INFO  org.springdoc.api.AbstractOpenApiResource:359 - Init duration for springdoc-openapi is: 124 ms
+2022-05-08 22:00:15.694 [SpringApplicationShutdownHook] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:53 - Commencing graceful shutdown. Waiting for active requests to complete
+2022-05-08 22:00:15.698 [netty-shutdown] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:62 - Graceful shutdown complete
+2022-05-08 22:00:20.020 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:55 - Starting WebServiceApplication using Java 18 on suzutsuki with PID 15529 (/Users/mingchang/GitHub/Service/web-service/target/classes started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 22:00:20.020 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:646 - The following 1 profile is active: "dev"
+2022-05-08 22:00:20.039 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-05-08 22:00:20.040 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-05-08 22:00:20.287 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 22:00:20.318 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 28 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 22:00:20.544 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 22:00:20.776 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer:58 - LiveReload server is running on port 35729
+2022-05-08 22:00:21.160 [restartedMain] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 22:00:21.306 [restartedMain] INFO  o.s.boot.web.embedded.netty.NettyWebServer:111 - Netty started on port 8080
+2022-05-08 22:00:21.315 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:61 - Started WebServiceApplication in 1.687 seconds (JVM running for 1.968)
+2022-05-08 22:00:23.222 [parallel-1] INFO  org.springdoc.api.AbstractOpenApiResource:359 - Init duration for springdoc-openapi is: 100 ms
+2022-05-08 22:00:33.904 [SpringApplicationShutdownHook] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:53 - Commencing graceful shutdown. Waiting for active requests to complete
+2022-05-08 22:00:33.910 [netty-shutdown] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:62 - Graceful shutdown complete
+2022-05-08 22:00:37.830 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:55 - Starting WebServiceApplication using Java 18 on suzutsuki with PID 15637 (/Users/mingchang/GitHub/Service/web-service/target/classes started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 22:00:37.830 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:646 - The following 1 profile is active: "dev"
+2022-05-08 22:00:37.850 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-05-08 22:00:37.850 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor:255 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-05-08 22:00:38.093 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 22:00:38.125 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 30 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 22:00:38.357 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 22:00:38.593 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer:58 - LiveReload server is running on port 35729
+2022-05-08 22:00:39.066 [restartedMain] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 22:00:39.225 [restartedMain] INFO  o.s.boot.web.embedded.netty.NettyWebServer:111 - Netty started on port 8080
+2022-05-08 22:00:39.241 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:61 - Started WebServiceApplication in 1.812 seconds (JVM running for 2.133)
+2022-05-08 22:00:45.665 [parallel-5] INFO  org.springdoc.api.AbstractOpenApiResource:359 - Init duration for springdoc-openapi is: 93 ms
+2022-05-08 22:06:16.250 [Thread-4] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:53 - Commencing graceful shutdown. Waiting for active requests to complete
+2022-05-08 22:06:16.253 [netty-shutdown] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:62 - Graceful shutdown complete
+2022-05-08 22:06:18.340 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:55 - Starting WebServiceApplication using Java 18 on suzutsuki with PID 15637 (/Users/mingchang/GitHub/Service/web-service/target/classes started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 22:06:18.341 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:646 - The following 1 profile is active: "dev"
+2022-05-08 22:06:18.444 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 22:06:18.452 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 7 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 22:06:18.534 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 22:06:18.591 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer:58 - LiveReload server is running on port 35729
+2022-05-08 22:06:18.801 [restartedMain] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 22:06:18.866 [restartedMain] INFO  o.s.boot.web.embedded.netty.NettyWebServer:111 - Netty started on port 8080
+2022-05-08 22:06:18.870 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:61 - Started WebServiceApplication in 0.556 seconds (JVM running for 341.772)
+2022-05-08 22:06:18.871 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener:63 - Condition evaluation unchanged
+2022-05-08 22:06:20.285 [Thread-23] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:53 - Commencing graceful shutdown. Waiting for active requests to complete
+2022-05-08 22:06:20.286 [netty-shutdown] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:62 - Graceful shutdown complete
+2022-05-08 22:06:22.439 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:55 - Starting WebServiceApplication using Java 18 on suzutsuki with PID 15637 (/Users/mingchang/GitHub/Service/web-service/target/classes started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 22:06:22.439 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:646 - The following 1 profile is active: "dev"
+2022-05-08 22:06:22.503 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 22:06:22.508 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 4 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 22:06:22.557 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 22:06:22.598 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer:58 - LiveReload server is running on port 35729
+2022-05-08 22:06:22.737 [restartedMain] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 22:06:22.781 [restartedMain] INFO  o.s.boot.web.embedded.netty.NettyWebServer:111 - Netty started on port 8080
+2022-05-08 22:06:22.786 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:61 - Started WebServiceApplication in 0.366 seconds (JVM running for 345.688)
+2022-05-08 22:06:22.787 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener:63 - Condition evaluation unchanged
+2022-05-08 22:06:26.619 [Thread-28] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:53 - Commencing graceful shutdown. Waiting for active requests to complete
+2022-05-08 22:06:26.620 [netty-shutdown] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:62 - Graceful shutdown complete
+2022-05-08 22:06:28.726 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:55 - Starting WebServiceApplication using Java 18 on suzutsuki with PID 15637 (/Users/mingchang/GitHub/Service/web-service/target/classes started by mingchang in /Users/mingchang/GitHub/Service/web-service)
+2022-05-08 22:06:28.726 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:646 - The following 1 profile is active: "dev"
+2022-05-08 22:06:28.790 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:132 - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2022-05-08 22:06:28.795 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate:201 - Finished Spring Data repository scanning in 5 ms. Found 5 R2DBC repository interfaces.
+2022-05-08 22:06:28.844 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:376 - Bean 'org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.ReactiveMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-05-08 22:06:28.884 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer:58 - LiveReload server is running on port 35729
+2022-05-08 22:06:29.022 [restartedMain] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-08 22:06:29.071 [restartedMain] INFO  o.s.boot.web.embedded.netty.NettyWebServer:111 - Netty started on port 8080
+2022-05-08 22:06:29.075 [restartedMain] INFO  c.e.official.webservice.WebServiceApplication:61 - Started WebServiceApplication in 0.365 seconds (JVM running for 351.977)
+2022-05-08 22:06:29.076 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener:63 - Condition evaluation unchanged
+2022-05-08 22:06:32.851 [parallel-3] INFO  org.springdoc.api.AbstractOpenApiResource:359 - Init duration for springdoc-openapi is: 58 ms
+2022-05-08 22:06:38.227 [SpringApplicationShutdownHook] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:53 - Commencing graceful shutdown. Waiting for active requests to complete
+2022-05-08 22:06:38.227 [netty-shutdown] INFO  o.s.boot.web.embedded.netty.GracefulShutdown:62 - Graceful shutdown complete
