@@ -1,14 +1,16 @@
 package com.escambia.official.webservice.service.impl;
 
 import com.escambia.official.webservice.model.postgresql.Inventory;
+import com.escambia.official.webservice.model.response.ExchangeCount;
+import com.escambia.official.webservice.repository.DictionaryRepository;
 import com.escambia.official.webservice.repository.InventoryRepository;
 import com.escambia.official.webservice.service.HomeService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
+import reactor.core.scheduler.Schedulers;
 
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  * InventoryServiceImpl
@@ -22,8 +24,11 @@ public class HomeServiceImpl implements HomeService {
 
     private final InventoryRepository inventoryRepository;
 
-    public HomeServiceImpl(InventoryRepository inventoryRepository) {
+    private final DictionaryRepository dictionaryRepository;
+
+    public HomeServiceImpl(InventoryRepository inventoryRepository, DictionaryRepository dictionaryRepository) {
         this.inventoryRepository = inventoryRepository;
+        this.dictionaryRepository = dictionaryRepository;
     }
 
     @Override
@@ -33,5 +38,13 @@ public class HomeServiceImpl implements HomeService {
         } else {
             return inventoryRepository.findAllByCityDictionaryIdAndExpiryDateBeforeAndCurrentAmountIsGreaterThan(dictionaryId, LocalDate.now(), 0);
         }
+    }
+
+    @Override
+    public Flux<ExchangeCount> getExchangeCount(Boolean isExpireAllowed) {
+        return dictionaryRepository.findAllByType(3)
+                .flatMap(dictionary -> inventoryRepository.countAllByTownDictionaryId(dictionary.getDictionaryId())
+                        .publishOn(Schedulers.boundedElastic())
+                        .map(count -> new ExchangeCount(dictionary.getRelatedId(), dictionary.getDictionaryId(), count)));
     }
 }

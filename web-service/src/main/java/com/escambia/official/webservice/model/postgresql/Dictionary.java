@@ -22,4 +22,9 @@ public class Dictionary {
 
     private String name;
 
+    private String code;
+
+    @Column("related_id")
+    private Integer relatedId;
+
 }
