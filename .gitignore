@@ -204,4 +204,6 @@ Temporary Items
 # Ignore code-workspaces
 *.code-workspace
 
+web-service/target/
+
 # End of https://www.toptal.com/developers/gitignore/api/java,git,visualstudiocode,intellij+all,macos,linux
