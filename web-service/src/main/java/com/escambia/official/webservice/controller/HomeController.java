@@ -1,7 +1,8 @@
 package com.escambia.official.webservice.controller;
 
 import com.escambia.official.webservice.model.postgresql.Inventory;
-import com.escambia.official.webservice.model.response.ExchangeCount;
+import com.escambia.official.webservice.model.response.CityExchangeCount;
+import com.escambia.official.webservice.model.response.TownExchangeCount;
 import com.escambia.official.webservice.service.HomeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -29,10 +30,16 @@ public class HomeController {
         this.homeService = homeService;
     }
 
-    @Operation(summary = "取得總交換物品數（以地區分別）")
-    @GetMapping("/")
-    public Flux<ExchangeCount> getExchangeCount(@Parameter(description = "是否允許過期") @RequestParam Boolean isExpireAllowed) {
-        return homeService.getExchangeCount(isExpireAllowed);
+    @Operation(summary = "取得縣市總交換物品數（以地區分別）")
+    @GetMapping("/count/city")
+    public Flux<CityExchangeCount> getCityExchangeCount(@Parameter(description = "是否允許過期") @RequestParam Boolean isExpireAllowed) {
+        return homeService.getCityExchangeCount(isExpireAllowed);
+    }
+
+    @Operation(summary = "取得鄉鎮總交換物品數（以地區分別）")
+    @GetMapping("/count/town")
+    public Flux<TownExchangeCount> getTownExchangeCount(@Parameter(description = "縣市系統代號") @RequestParam Integer cityDictionaryId, @Parameter(description = "是否允許過期") @RequestParam Boolean isExpireAllowed) {
+        return homeService.getTownExchangeCount(cityDictionaryId, isExpireAllowed);
     }
 
     @Operation(summary = "取得地區交換物品列表")

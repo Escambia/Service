@@ -1,7 +1,8 @@
 package com.escambia.official.webservice.service.impl;
 
 import com.escambia.official.webservice.model.postgresql.Inventory;
-import com.escambia.official.webservice.model.response.ExchangeCount;
+import com.escambia.official.webservice.model.response.CityExchangeCount;
+import com.escambia.official.webservice.model.response.TownExchangeCount;
 import com.escambia.official.webservice.repository.DictionaryRepository;
 import com.escambia.official.webservice.repository.InventoryRepository;
 import com.escambia.official.webservice.service.HomeService;
@@ -41,10 +42,18 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
-    public Flux<ExchangeCount> getExchangeCount(Boolean isExpireAllowed) {
-        return dictionaryRepository.findAllByType(3)
+    public Flux<CityExchangeCount> getCityExchangeCount(Boolean isExpireAllowed) {
+        return dictionaryRepository.findAllByType(2)
+                .flatMap(dictionary -> inventoryRepository.countAllByCityDictionaryId(dictionary.getDictionaryId())
+                        .publishOn(Schedulers.boundedElastic())
+                        .map(count -> new CityExchangeCount(dictionary.getDictionaryId(), count)));
+    }
+
+    @Override
+    public Flux<TownExchangeCount> getTownExchangeCount(Integer cityDictionaryId, Boolean isExpireAllowed) {
+        return dictionaryRepository.findAllByRelatedId(cityDictionaryId)
                 .flatMap(dictionary -> inventoryRepository.countAllByTownDictionaryId(dictionary.getDictionaryId())
                         .publishOn(Schedulers.boundedElastic())
-                        .map(count -> new ExchangeCount(dictionary.getRelatedId(), dictionary.getDictionaryId(), count)));
+                        .map(count -> new TownExchangeCount(dictionary.getRelatedId(), dictionary.getDictionaryId(), count)));
     }
 }
