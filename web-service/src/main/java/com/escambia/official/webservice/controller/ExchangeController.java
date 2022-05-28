@@ -8,10 +8,8 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -35,5 +33,17 @@ public class ExchangeController {
     @PutMapping("/startup")
     public Mono<Exchange> startupExchange(@Parameter(hidden = true) @AuthenticationPrincipal UserDto userDto, @Parameter(description = "交換存貨編號") @RequestBody Integer inventoryId, @Parameter(description = "交換數量") @RequestBody Integer exchangeQuantity) {
         return exchangeService.startupExchange(userDto.userId(), inventoryId, exchangeQuantity);
+    }
+
+    @Operation(summary = "查詢交換列表（交換者）", security = @SecurityRequirement(name = "bearerAuth"))
+    @GetMapping("/")
+    public Flux<Exchange> getExchangeList(@Parameter(hidden = true) @AuthenticationPrincipal UserDto userDto) {
+        return exchangeService.getExchangeList(userDto.userId());
+    }
+
+    @Operation(summary = "查詢交換列表（被交換者）", security = @SecurityRequirement(name = "bearerAuth"))
+    @GetMapping("/")
+    public Flux<Exchange> getExchangeList(@Parameter(hidden = true) @AuthenticationPrincipal UserDto userDto, @Parameter(description = "交換存貨編號") @RequestBody Integer inventoryId) {
+        return exchangeService.getExchangeList(userDto.userId(), inventoryId);
     }
 }

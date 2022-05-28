@@ -2,6 +2,7 @@ package com.escambia.official.webservice.service.impl;
 
 import com.escambia.official.webservice.model.exception.CustomConflictException;
 import com.escambia.official.webservice.model.exception.CustomForbiddenException;
+import com.escambia.official.webservice.model.exception.CustomNotFoundException;
 import com.escambia.official.webservice.model.postgresql.Exchange;
 import com.escambia.official.webservice.repository.ExchangeRepository;
 import com.escambia.official.webservice.repository.InventoryRepository;
@@ -9,10 +10,12 @@ import com.escambia.official.webservice.repository.UserInfoRepository;
 import com.escambia.official.webservice.service.ExchangeService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * ExchangeServiceImpl
@@ -65,5 +68,18 @@ public class ExchangeServiceImpl implements ExchangeService {
                             });
                 })
                 .switchIfEmpty(Mono.error(new CustomForbiddenException("此帳號未通過驗證或已被停用")));
+    }
+
+    @Override
+    public Flux<Exchange> getExchangeList(Integer userId) {
+        return exchangeRepository.findAllByExchangerUserId(userId)
+                .switchIfEmpty(Mono.error(new CustomNotFoundException("查無交換紀錄")));
+    }
+
+    @Override
+    public Flux<Exchange> getExchangeList(Integer userId, Integer inventoryId) {
+        return inventoryRepository.findById(userId)
+                .filter(inventory -> Objects.equals(inventory.getInventoryId(), inventoryId))
+                .flatMapMany(inventory -> exchangeRepository.findAllByInventoryId(inventoryId));
     }
 }
