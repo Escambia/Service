@@ -35,7 +35,7 @@ public class HomeServiceImpl implements HomeService {
     @Override
     public Flux<Inventory> getExchangeList(Integer dictionaryId, Boolean isExpireAllowed) {
         if (isExpireAllowed) {
-            return inventoryRepository.findAllByCityDictionaryIdAndCurrentAmountIsGreaterThan(dictionaryId, 0);
+            return inventoryRepository.findAllByTownDictionaryIdAndCurrentAmountIsGreaterThan(dictionaryId, 0);
         } else {
             return inventoryRepository.findAllByCityDictionaryIdAndExpiryDateBeforeAndCurrentAmountIsGreaterThan(dictionaryId, LocalDate.now(), 0);
         }

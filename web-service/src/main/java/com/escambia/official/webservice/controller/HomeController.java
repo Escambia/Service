@@ -44,7 +44,7 @@ public class HomeController {
 
     @Operation(summary = "取得地區交換物品列表")
     @GetMapping("/list")
-    public Flux<Inventory> getExchangeList(@Parameter(description = "字典資料庫編號（僅接受status = 2的縣市）") @RequestParam Integer dictionaryId,
+    public Flux<Inventory> getExchangeList(@Parameter(description = "字典資料庫編號（僅接受status = 3的鄉鎮市區）") @RequestParam Integer dictionaryId,
                                            @Parameter(description = "是否允許過期") @RequestParam Boolean isExpireAllowed) {
         return homeService.getExchangeList(dictionaryId, isExpireAllowed);
     }

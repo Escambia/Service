@@ -15,7 +15,7 @@ public interface InventoryRepository extends R2dbcRepository<Inventory, Integer>
 
     Flux<Inventory> findAllByCityDictionaryIdAndExpiryDateBeforeAndCurrentAmountIsGreaterThan(Integer cityDictionaryId, LocalDate expiryDate, Integer currentAmount);
 
-    Flux<Inventory> findAllByCityDictionaryIdAndCurrentAmountIsGreaterThan(Integer cityDictionaryId, Integer currentAmount);
+    Flux<Inventory> findAllByTownDictionaryIdAndCurrentAmountIsGreaterThan(Integer townDictionaryId, Integer currentAmount);
 
     Mono<Integer> countAllByCityDictionaryId(Integer cityDictionaryId);
 
