@@ -80,6 +80,7 @@ public class ExchangeServiceImpl implements ExchangeService {
     public Flux<Exchange> getExchangeList(Integer userId, Integer inventoryId) {
         return inventoryRepository.findById(userId)
                 .filter(inventory -> Objects.equals(inventory.getInventoryId(), inventoryId))
-                .flatMapMany(inventory -> exchangeRepository.findAllByInventoryId(inventoryId));
+                .flatMapMany(inventory -> exchangeRepository.findAllByInventoryId(inventoryId))
+                .switchIfEmpty(Mono.error(new CustomNotFoundException("您所請求的存貨編號不存在或不為您所有")));
     }
 }
