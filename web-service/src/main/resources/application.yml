@@ -36,8 +36,8 @@ spring:
   r2dbc:
     pool:
       enabled: true
-      initial-size: 100
-      max-size: 10000
+      initial-size: 10
+      max-size: 50
     url: "r2dbc:postgresql://database.c7zj1xnu7zet.us-west-2.rds.amazonaws.com:5432/postgres?currentSchema=escambiadb"
     username: "postgres"
     password: "postgres"
@@ -49,8 +49,8 @@ spring:
   r2dbc:
     pool:
       enabled: true
-      initial-size: 100
-      max-size: 10000
+      initial-size: 10
+      max-size: 50
     url: "r2dbc:postgresql://localhost:5432/postgres?currentSchema=escambiadb"
     username: "root"
     password: "Ming137137"
