@@ -1,5 +1,8 @@
 package com.escambia.official.webservice.service;
 
+import com.escambia.official.webservice.model.postgresql.Exchange;
+import reactor.core.publisher.Mono;
+
 /**
  * ExchangeService
  *
@@ -7,5 +10,7 @@ package com.escambia.official.webservice.service;
  */
 
 public interface ExchangeService {
+
+    Mono<Exchange> startupExchange(Integer userId, Integer inventoryId, Integer exchangeQuantity);
 
 }
