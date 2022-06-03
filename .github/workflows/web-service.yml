@@ -19,12 +19,8 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '18'
-      - name: Setup Gradle Envrionment
-        uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: release-candidate
-      - name: Build JAR file with Gradle
-        run: gradle build -x test
+      - name: Build with Maven
+        run: mvn --batch-mode --update-snapshots package -Dmaven.test.skip
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
@@ -36,6 +32,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: mingchang137/escambia-main
+          platforms: linux/arm64
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v3
         with:
