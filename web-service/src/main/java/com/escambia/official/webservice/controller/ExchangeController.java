@@ -36,13 +36,13 @@ public class ExchangeController {
     }
 
     @Operation(summary = "查詢交換列表（交換者）", security = @SecurityRequirement(name = "bearerAuth"))
-    @GetMapping("/")
+    @GetMapping("/getExchangeList/requester")
     public Flux<Exchange> getExchangeList(@Parameter(hidden = true) @AuthenticationPrincipal UserDto userDto) {
         return exchangeService.getExchangeList(userDto.userId());
     }
 
     @Operation(summary = "查詢交換列表（被交換者）", security = @SecurityRequirement(name = "bearerAuth"))
-    @GetMapping("/")
+    @GetMapping("/getExchangeList/exchanger")
     public Flux<Exchange> getExchangeList(@Parameter(hidden = true) @AuthenticationPrincipal UserDto userDto, @Parameter(description = "交換存貨編號") @RequestBody Integer inventoryId) {
         return exchangeService.getExchangeList(userDto.userId(), inventoryId);
     }
