@@ -52,5 +52,12 @@ spring:
       initial-size: 10
       max-size: 50
     url: "r2dbc:postgresql://localhost:5432/postgres?currentSchema=escambiadb"
-    username: "root"
-    password: "Ming137137"
+    username:
+    password:
+logging:
+  level:
+    io:
+      r2dbc:
+        postgresql:
+          QUERY: DEBUG
+          PARAM: DEBUG
