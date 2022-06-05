@@ -40,11 +40,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Mono<Void> register(RegisterRequest request) {
-        Timestamp nowDateTime = Timestamp.valueOf(LocalDateTime.now());
-        UserInfo insertData = new ObjectMapper().convertValue(request, UserInfo.class);
+        var insertData = new ObjectMapper().convertValue(request, UserInfo.class);
         insertData.setStatus(1);
-        insertData.setCreationDate(nowDateTime);
-        insertData.setUpdateDate(nowDateTime);
+        insertData.setCreationDate(LocalDateTime.now());
+        insertData.setUpdateDate(LocalDateTime.now());
         insertData.setAcceptExpired(false);
         return userInfoRepository.save(insertData)
                 .doOnSuccess(userInfoInfo -> {
@@ -56,7 +55,7 @@ public class UserServiceImpl implements UserService {
     public Mono<Void> updateApnsToken(UserDto userDto, String apnsToken) {
         return userInfoRepository.findById(userDto.userId()).flatMap(userInfoInfo -> {
             userInfoInfo.setApnToken(apnsToken);
-            userInfoInfo.setUpdateDate(Timestamp.valueOf(LocalDateTime.now()));
+            userInfoInfo.setUpdateDate(LocalDateTime.now());
             return userInfoRepository.save(userInfoInfo).then();
         });
     }
