@@ -18,6 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WebServiceApplication {
 
+    public static void main(String[] args) {
+        SpringApplication.run(WebServiceApplication.class, args);
+    }
+
     @RequestMapping
     @Operation(hidden = true)
     public String home() {
@@ -38,10 +42,6 @@ public class WebServiceApplication {
                    \\/  \\/ \\___|_.__/\\____/ \\___|_|    \\_/ |_|\\___\\___|
                   
                 """;
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(WebServiceApplication.class, args);
     }
 
 }

@@ -23,6 +23,10 @@ public record UserDto(
 
 ) implements UserDetails {
 
+    public UserDto(Integer userId, String account, Collection<? extends GrantedAuthority> authorities) {
+        this(account, null, authorities, userId, true, true, true, true);
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
@@ -56,10 +60,6 @@ public record UserDto(
     @Override
     public boolean isEnabled() {
         return enabled;
-    }
-
-    public UserDto(Integer userId, String account, Collection<? extends GrantedAuthority> authorities) {
-        this(account, null, authorities, userId, true, true, true, true);
     }
 
 }

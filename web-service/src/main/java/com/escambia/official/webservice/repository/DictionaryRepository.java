@@ -11,6 +11,7 @@ import reactor.core.publisher.Flux;
 public interface DictionaryRepository extends R2dbcRepository<Dictionary, Integer> {
 
     Flux<Dictionary> findAllByType(Integer type);
+
     Flux<Dictionary> findAllByRelatedId(Integer relatedId);
 
 }

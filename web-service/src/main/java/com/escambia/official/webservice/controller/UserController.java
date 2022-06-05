@@ -9,7 +9,6 @@ import com.escambia.official.webservice.service.UserService;
 import com.escambia.official.webservice.utility.ApnsUtility;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -43,13 +42,13 @@ public class UserController {
 
     @Operation(summary = "更新Apple Push Notification Token")
     @PatchMapping("/updateApnsToken")
-    public Mono<Void> updateApnsToken(@Parameter(hidden = true) @AuthenticationPrincipal UserDto userDto, @Parameter(description = "Apple Push Notification Token") @RequestBody String apnsToken) {
+    public Mono<Void> updateApnsToken(@Parameter(hidden = true) @AuthenticationPrincipal UserDto userDto, @Parameter(description = "Apple Push Notification Token") String apnsToken) {
         return userService.updateApnsToken(userDto, apnsToken);
     }
 
     @Operation(summary = "測試推送通知功能")
     @GetMapping("/notificationTest")
-    public Mono<Void> notificationTest(@Parameter(description = "Apple Push Notification Token") @RequestParam String apnsToken) {
+    public Mono<Void> notificationTest(@Parameter(description = "Apple Push Notification Token") String apnsToken) {
         SimpleApnsPushNotification notification = apnsUtility.createNotification("CINCPAC headquarters", "TURKEY TROTS TO WATER GG FROM CINCPAC ACTION COM THIRD FLEET INFO COMINCH CTF SEVENTY-SEVEN X WHERE IS RPT WHERE IS TASK FORCE THIRTY FOUR RR THE WORLD WONDERS", InterruptionLevel.CRITICAL, apnsToken);
         apnsUtility.sentNotification(notification);
         return Mono.empty().then();

@@ -9,7 +9,6 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
@@ -32,20 +31,20 @@ public class HomeController {
 
     @Operation(summary = "取得縣市總交換物品數（以地區分別）")
     @GetMapping("/count/city")
-    public Flux<CityExchangeCount> getCityExchangeCount(@Parameter(description = "是否允許過期") @RequestParam Boolean isExpireAllowed) {
+    public Flux<CityExchangeCount> getCityExchangeCount(@Parameter(description = "是否允許過期") Boolean isExpireAllowed) {
         return homeService.getCityExchangeCount(isExpireAllowed);
     }
 
     @Operation(summary = "取得鄉鎮總交換物品數（以地區分別）")
     @GetMapping("/count/town")
-    public Flux<TownExchangeCount> getTownExchangeCount(@Parameter(description = "縣市系統代號") @RequestParam Integer cityDictionaryId, @Parameter(description = "是否允許過期") @RequestParam Boolean isExpireAllowed) {
+    public Flux<TownExchangeCount> getTownExchangeCount(@Parameter(description = "縣市系統代號") Integer cityDictionaryId, @Parameter(description = "是否允許過期") Boolean isExpireAllowed) {
         return homeService.getTownExchangeCount(cityDictionaryId, isExpireAllowed);
     }
 
     @Operation(summary = "取得地區交換物品列表")
     @GetMapping("/list")
-    public Flux<Inventory> getExchangeList(@Parameter(description = "字典資料庫編號（僅接受status = 3的鄉鎮市區）") @RequestParam Integer dictionaryId,
-                                           @Parameter(description = "是否允許過期") @RequestParam Boolean isExpireAllowed) {
+    public Flux<Inventory> getExchangeList(@Parameter(description = "字典資料庫編號（僅接受status = 3的鄉鎮市區）") Integer dictionaryId,
+                                           @Parameter(description = "是否允許過期") Boolean isExpireAllowed) {
         return homeService.getExchangeList(dictionaryId, isExpireAllowed);
     }
 

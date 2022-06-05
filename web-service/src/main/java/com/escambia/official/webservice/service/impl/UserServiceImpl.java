@@ -32,7 +32,8 @@ public class UserServiceImpl implements UserService {
         return switch (request.getLoginType()) {
             case 1 -> userInfoRepository.findByGoogleToken(request.getGoogleToken()).map(jwtUtility::generateTokenUser);
             case 2 -> userInfoRepository.findByAppleToken(request.getAppleToken()).map(jwtUtility::generateTokenUser);
-            case 3 -> userInfoRepository.findByFacebookToken(request.getFacebookToken()).map(jwtUtility::generateTokenUser);
+            case 3 ->
+                    userInfoRepository.findByFacebookToken(request.getFacebookToken()).map(jwtUtility::generateTokenUser);
             default -> Mono.error(new Throwable("Missing parameter: loginType."));
         };
     }
