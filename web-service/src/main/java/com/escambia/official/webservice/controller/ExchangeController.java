@@ -8,10 +8,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -48,5 +45,11 @@ public class ExchangeController {
     @GetMapping("/getExchangeList/exchanger")
     public Flux<Exchange> getExchangeList(@Parameter(hidden = true) @AuthenticationPrincipal UserDto userDto, @Parameter(description = "交換存貨編號") Integer inventoryId) {
         return exchangeService.getExchangeList(userDto.userId(), inventoryId);
+    }
+
+    @Operation(summary = "更新交換狀態", security = @SecurityRequirement(name = "bearerAuth"))
+    @PatchMapping("/updateExchangeStatus")
+    public Mono<Exchange> updateExchangeStatus(@Parameter(hidden = true) @AuthenticationPrincipal UserDto userDto, @Parameter(description = "交換編號") @RequestBody Exchange exchange) {
+        return exchangeService.updateExchangeStatus(userDto.userId(), exchange);
     }
 }

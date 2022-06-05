@@ -18,4 +18,5 @@ public interface ExchangeService {
 
     Flux<Exchange> getExchangeList(Integer userId, Integer inventoryId);
 
+    Mono<Exchange> updateExchangeStatus(Integer userId, Exchange exchange);
 }

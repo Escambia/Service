@@ -61,7 +61,7 @@ public class ExchangeServiceImpl implements ExchangeService {
                                                 inventoryId,
                                                 userId,
                                                 1,
-                                                Timestamp.valueOf(LocalDateTime.now()),
+                                                LocalDateTime.now(),
                                                 null,
                                                 null)
                                         ));
@@ -82,5 +82,20 @@ public class ExchangeServiceImpl implements ExchangeService {
                 .filter(inventory -> Objects.equals(inventory.getInventoryId(), inventoryId))
                 .flatMapMany(inventory -> exchangeRepository.findAllByInventoryId(inventoryId))
                 .switchIfEmpty(Mono.error(new CustomNotFoundException("您所請求的存貨編號不存在或不為您所有")));
+    }
+
+    @Override
+    public Mono<Exchange> updateExchangeStatus(Integer userId, Exchange exchange) {
+        return exchangeRepository.findById(exchange.getExchangeId())
+                .switchIfEmpty(Mono.error(new CustomNotFoundException("交換紀錄不存在")))
+                .filter(exchangeInRecord -> exchange.getStatus() <= exchangeInRecord.getStatus())
+                .flatMap(exchangeInRecord -> {
+                    switch (exchange.getStatus()) {
+                        case 3 -> exchange.setAcceptDate(LocalDateTime.now());
+                        case 5 -> exchange.setCompleteDate(LocalDateTime.now());
+                    }
+                    return exchangeRepository.save(exchange);
+                })
+                .switchIfEmpty(Mono.error(new CustomConflictException("交換狀態不合法，如需重啓交換，請重新啓動交換流程")));
     }
 }
