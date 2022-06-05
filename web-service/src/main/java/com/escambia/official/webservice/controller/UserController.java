@@ -1,12 +1,9 @@
 package com.escambia.official.webservice.controller;
 
-import com.eatthepath.pushy.apns.util.InterruptionLevel;
-import com.eatthepath.pushy.apns.util.SimpleApnsPushNotification;
 import com.escambia.official.webservice.model.UserDto;
 import com.escambia.official.webservice.model.request.LoginRequest;
 import com.escambia.official.webservice.model.request.RegisterRequest;
 import com.escambia.official.webservice.service.UserService;
-import com.escambia.official.webservice.utility.ApnsUtility;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -19,12 +16,9 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/user")
 public class UserController {
 
-    private final ApnsUtility apnsUtility;
-
     private final UserService userService;
 
-    public UserController(ApnsUtility apnsUtility, UserService userService) {
-        this.apnsUtility = apnsUtility;
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -44,14 +38,6 @@ public class UserController {
     @PatchMapping("/updateApnsToken")
     public Mono<Void> updateApnsToken(@Parameter(hidden = true) @AuthenticationPrincipal UserDto userDto, @Parameter(description = "Apple Push Notification Token") String apnsToken) {
         return userService.updateApnsToken(userDto, apnsToken);
-    }
-
-    @Operation(summary = "測試推送通知功能")
-    @GetMapping("/notificationTest")
-    public Mono<Void> notificationTest(@Parameter(description = "Apple Push Notification Token") String apnsToken) {
-        SimpleApnsPushNotification notification = apnsUtility.createNotification("CINCPAC headquarters", "TURKEY TROTS TO WATER GG FROM CINCPAC ACTION COM THIRD FLEET INFO COMINCH CTF SEVENTY-SEVEN X WHERE IS RPT WHERE IS TASK FORCE THIRTY FOUR RR THE WORLD WONDERS", InterruptionLevel.CRITICAL, apnsToken);
-        apnsUtility.sentNotification(notification);
-        return Mono.empty().then();
     }
 
 }
