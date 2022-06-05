@@ -7,7 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @Table("exchange")
@@ -38,12 +38,12 @@ public class Exchange {
     private Integer status;
 
     @Column("start_date")
-    private Timestamp startDate;
+    private LocalDateTime startDate;
 
     @Column("accept_date")
-    private Timestamp acceptDate;
+    private LocalDateTime acceptDate;
 
     @Column("complete_date")
-    private Timestamp completeDate;
+    private LocalDateTime completeDate;
 
 }

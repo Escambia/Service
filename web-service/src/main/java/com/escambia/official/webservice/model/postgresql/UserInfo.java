@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @Table("user_info")
@@ -59,10 +59,10 @@ public class UserInfo {
     private Integer status;
 
     @Column("creation_date")
-    private Timestamp creationDate;
+    private LocalDateTime creationDate;
 
     @Column("update_date")
-    private Timestamp updateDate;
+    private LocalDateTime updateDate;
 
     @Column("apn_token")
     private String apnToken;

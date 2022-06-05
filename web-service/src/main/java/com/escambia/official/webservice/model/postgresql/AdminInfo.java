@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Table("admin_info")
@@ -26,13 +26,13 @@ public class AdminInfo {
     private Boolean status;
 
     @Column("creation_date")
-    private Date creationDate;
+    private LocalDateTime creationDate;
 
     @Column("created_by")
     private Integer createdBy;
 
     @Column("update_date")
-    private Date updateDate;
+    private LocalDateTime updateDate;
 
     @Column("updated_by")
     private Integer updatedBy;
