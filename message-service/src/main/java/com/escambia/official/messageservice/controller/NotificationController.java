@@ -1,5 +1,6 @@
 package com.escambia.official.messageservice.controller;
 
+import com.eatthepath.pushy.apns.PushNotificationResponse;
 import com.eatthepath.pushy.apns.util.InterruptionLevel;
 import com.eatthepath.pushy.apns.util.SimpleApnsPushNotification;
 import com.escambia.official.messageservice.utility.ApnsUtility;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
+import reactor.util.function.Tuple2;
+import reactor.util.function.Tuples;
 
 @RestController
 @Tag(name = "推播通知")
@@ -24,9 +28,13 @@ public class NotificationController {
 
     @Operation(summary = "測試推送通知功能")
     @GetMapping("/notificationTest")
-    public Mono<Void> notificationTest(@Parameter(description = "Apple Push Notification Token") String apnsToken) {
-        SimpleApnsPushNotification notification = apnsUtility.createNotification("CINCPAC headquarters", "TURKEY TROTS TO WATER GG FROM CINCPAC ACTION COM THIRD FLEET INFO COMINCH CTF SEVENTY-SEVEN X WHERE IS RPT WHERE IS TASK FORCE THIRTY FOUR RR THE WORLD WONDERS", InterruptionLevel.CRITICAL, apnsToken);
-        apnsUtility.sentNotification(notification);
-        return Mono.empty().then();
+    public Mono<Tuple2<Integer, String>> notificationTest(@Parameter(description = "Apple Push Notification Token") String apnsToken) {
+        return Mono.fromCallable(() -> apnsUtility.createNotification("CINCPAC headquarters", "TURKEY TROTS TO WATER GG FROM CINCPAC ACTION COM THIRD FLEET INFO COMINCH CTF SEVENTY-SEVEN X WHERE IS RPT WHERE IS TASK FORCE THIRTY FOUR RR THE WORLD WONDERS", InterruptionLevel.CRITICAL, apnsToken))
+                .publishOn(Schedulers.boundedElastic())
+                .flatMap(apnsUtility::sentNotification)
+                .map(response -> Tuples.of(
+                        response.getStatusCode(),
+                        response.getRejectionReason().isPresent() ? response.getRejectionReason().get() : "Notification sent successfully.")
+                );
     }
 }
