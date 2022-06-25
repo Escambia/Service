@@ -68,7 +68,7 @@ public class ChatServiceImpl implements ChatService {
                                 .filter(
                                         newAggregation(
                                                 match(
-                                                        where("operationType").is("insert").and("operationType").is("update")
+                                                        where("operationType").is("insert")
                                                                 .andOperator(
                                                                         where("chatRoomId").is(chatRoomId)
                                                                                 .andOperator(
