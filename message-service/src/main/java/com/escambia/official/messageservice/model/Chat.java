@@ -21,6 +21,8 @@ public class Chat {
 
     private Integer toUserId;
 
+    private String chatRoomTitle;
+
     private String message;
 
     private LocalDateTime messageTime;

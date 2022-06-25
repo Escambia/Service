@@ -8,7 +8,7 @@ public interface ChatService {
 
     Flux<Chat> getAllChat(Integer chatRoomId);
 
-    Mono<Chat> sendChat(Chat chat);
+    Mono<Chat> sendChat(Chat chat, String apnsToken);
 
     Flux<Chat> openStream(Integer chatRoomId, Integer userId);
 

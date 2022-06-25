@@ -4,10 +4,7 @@ import com.escambia.official.messageservice.model.Chat;
 import com.escambia.official.messageservice.service.ChatService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -28,8 +25,8 @@ public class ChatController {
     }
 
     @PostMapping(value = "/send", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<Chat> sendChat(Chat chat) {
-        return chatService.sendChat(chat);
+    public Mono<Chat> sendChat(@RequestBody Chat chat, String apnsToken) {
+        return chatService.sendChat(chat, apnsToken);
     }
 
     @GetMapping(value = "/openStream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
