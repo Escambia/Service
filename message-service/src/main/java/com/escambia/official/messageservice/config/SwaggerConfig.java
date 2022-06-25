@@ -28,7 +28,7 @@ public class SwaggerConfig {
     public OpenAPI customConfiguration() {
         return new OpenAPI()
                 .servers(Collections
-                        .singletonList(new Server().url("https://web.mingchang.tw/escambia/main/")))
+                        .singletonList(new Server().url("https://web.mingchang.tw/escambia/message/")))
                 .components(new Components());
     }
 
