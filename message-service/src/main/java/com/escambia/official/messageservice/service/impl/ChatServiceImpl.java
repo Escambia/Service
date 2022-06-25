@@ -15,6 +15,7 @@ import reactor.core.scheduler.Schedulers;
 import reactor.util.function.Tuples;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
@@ -49,14 +50,14 @@ public class ChatServiceImpl implements ChatService {
                 })
                 .publishOn(Schedulers.boundedElastic())
                 .doOnSuccess(chatInserted -> Mono.fromCallable(() -> apnsUtility.createNotification(
-                                chatInserted.getChatRoomTitle(),
-                                chatInserted.getMessage(),
-                                InterruptionLevel.ACTIVE,
-                                apnsToken
+                                        chatInserted.getChatRoomTitle(),
+                                        chatInserted.getMessage(),
+                                        InterruptionLevel.ACTIVE,
+                                        apnsToken
                                 ))
-                        .publishOn(Schedulers.boundedElastic())
-                        .flatMap(apnsUtility::sentNotification)
-                        .subscribe()
+                                .publishOn(Schedulers.boundedElastic())
+                                .flatMap(apnsUtility::sentNotification)
+                                .subscribe()
                 );
     }
 
@@ -69,20 +70,15 @@ public class ChatServiceImpl implements ChatService {
                                         newAggregation(
                                                 match(
                                                         where("operationType").is("insert")
-                                                                .andOperator(
-                                                                        where("chatRoomId").is(chatRoomId)
-                                                                                .andOperator(
-                                                                                        where("fromUserId").is(userId)
-                                                                                                .orOperator(
-                                                                                                        where("toUserId").is(userId)
-                                                                                                )
-                                                                                )
-                                                                )
                                                 )
                                         )
                                 )
                                 .build(),
                         Chat.class)
+                .filter(chatChangeStreamEvent -> Objects.requireNonNull(chatChangeStreamEvent.getBody()).getChatRoomId().equals(chatRoomId)
+                        && (chatChangeStreamEvent.getBody().getToUserId().equals(userId)
+                        || chatChangeStreamEvent.getBody().getFromUserId().equals(userId))
+                )
                 .mapNotNull(ChangeStreamEvent::getBody);
     }
 }
