@@ -5,7 +5,7 @@ spring:
     name: "message-service"
   data:
     mongodb:
-      uri: "mongodb://localhost:27017,localhost:27027/chat"
+      uri: "mongodb://localhost:27017/chat"
 server:
   compression:
     enabled: true
