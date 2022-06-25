@@ -3,6 +3,11 @@ spring:
     base-path: "/escambia/message"
   application:
     name: "message-service"
+  data:
+    mongodb:
+      database: "chat"
+      host: "localhost"
+      port: 27017
 server:
   compression:
     enabled: true
