@@ -6,7 +6,7 @@ spring:
   data:
     mongodb:
       database: "chat"
-      host: "localhost"
+      host: "mongo"
       port: 27017
 server:
   compression:
