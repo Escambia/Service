@@ -60,4 +60,9 @@ public class UserServiceImpl implements UserService {
         });
     }
 
+    @Override
+    public Mono<String> getUserApnsToken(Integer userId) {
+        return userInfoRepository.findById(userId)
+                .map(UserInfo::getApnToken);
+    }
 }

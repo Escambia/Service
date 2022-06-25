@@ -13,4 +13,6 @@ public interface UserService {
 
     Mono<Void> updateApnsToken(UserDto userDto, String apnsToken);
 
+    Mono<String> getUserApnsToken(Integer userId);
+
 }

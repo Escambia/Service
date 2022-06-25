@@ -40,4 +40,10 @@ public class UserController {
         return userService.updateApnsToken(userDto, apnsToken);
     }
 
+    @Operation(summary = "取得Apple Push Notification Token")
+    @GetMapping("/getUserApnsToken")
+    public Mono<String> getUserApnsToken(Integer userId) {
+        return userService.getUserApnsToken(userId);
+    }
+
 }
