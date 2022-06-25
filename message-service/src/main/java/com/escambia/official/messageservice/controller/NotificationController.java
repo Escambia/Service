@@ -1,8 +1,6 @@
 package com.escambia.official.messageservice.controller;
 
-import com.eatthepath.pushy.apns.PushNotificationResponse;
 import com.eatthepath.pushy.apns.util.InterruptionLevel;
-import com.eatthepath.pushy.apns.util.SimpleApnsPushNotification;
 import com.escambia.official.messageservice.utility.ApnsUtility;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
