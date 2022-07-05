@@ -1,7 +1,7 @@
-package com.escambia.official.messageservice.controller;
+package com.escambia.official.webservice.controller;
 
 import com.eatthepath.pushy.apns.util.InterruptionLevel;
-import com.escambia.official.messageservice.utility.ApnsUtility;
+import com.escambia.official.webservice.utility.ApnsUtility;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
