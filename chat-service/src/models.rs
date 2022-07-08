@@ -1,3 +1,5 @@
+use crate::schema::escambiadb::chat_room;
+
 #[derive(Queryable)]
 pub struct UserInfo {
     pub user_id: i32,
@@ -18,3 +20,14 @@ pub struct UserInfo {
     pub apn_token: Option<String>,
     pub user_pic: Option<String>,
 }
+
+#[derive(Queryable, Insertable)]
+#[table_name = "chat_room"]
+pub struct ChatRoom {
+    pub chat_room_id: Option<i32>,
+    pub host_user_id: i32,
+    pub user_id_list: Vec<i32>,
+    pub status: Option<i32>,
+    pub creation_date: chrono::NaiveDateTime,
+}
+

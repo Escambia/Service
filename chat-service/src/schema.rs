@@ -15,6 +15,16 @@ pub mod escambiadb {
     }
 
     table! {
+        escambiadb.chat_room (chat_room_id) {
+            chat_room_id -> Int4,
+            host_user_id -> Int4,
+            user_id_list -> Array<Int4>,
+            status -> Int4,
+            creation_date -> Timestamp,
+        }
+    }
+
+    table! {
         escambiadb.dictionary (dictionary_id) {
             dictionary_id -> Int4,
             #[sql_name = "type"]
@@ -80,6 +90,7 @@ pub mod escambiadb {
 
     allow_tables_to_appear_in_same_query!(
         admin_info,
+        chat_room,
         dictionary,
         exchange,
         inventory,

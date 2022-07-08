@@ -1,11 +1,15 @@
+#[macro_use]
 extern crate diesel;
 extern crate env_logger;
 
-use actix_web::{get, App, HttpResponse, HttpServer, Responder, web::{Data}};
-use actix_web::middleware::{Logger};
-
 mod db;
+mod chat;
+mod schema;
+mod models;
+
 use db::{establish_connection, PgPool};
+use actix_web::{App, HttpResponse, HttpServer, Responder, web::{Data}, web};
+use actix_web::middleware::{Logger};
 
 #[derive(Clone)]
 pub struct Context {
@@ -23,7 +27,8 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .wrap(Logger::default())
             .wrap(Logger::new("%a %{User-Agent}i"))
-            .service(index)
+            .route("/", web::get().to(index))
+            .route("/createChatRoom", web::post().to(chat::create_chat_room))
             .app_data(Data::new(Context {
                 db: pool.clone()
             }))
@@ -34,7 +39,6 @@ async fn main() -> std::io::Result<()> {
         .await
 }
 
-#[get("/")]
 async fn index() -> impl Responder {
     HttpResponse::Ok()
         .append_header(("content-type", "text/html"))
@@ -56,5 +60,3 @@ async fn index() -> impl Responder {
 
                                                           "#)
 }
-
-
