@@ -1,13 +1,7 @@
-#[macro_use]
-extern crate diesel;
-
 use diesel::pg::PgConnection;
 use std::env;
 use diesel::r2d2::{ConnectionManager, PoolError};
 use r2d2::{Pool};
-
-pub mod schema;
-pub mod models;
 
 pub type PgPool = Pool<ConnectionManager<PgConnection>>;
 
