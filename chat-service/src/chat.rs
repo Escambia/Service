@@ -1,34 +1,69 @@
 use actix_web::{HttpResponse, Responder};
-use actix_web::web::{Data, Json};
-use diesel::{PgConnection, QueryResult, RunQueryDsl};
-use crate::{Context};
+use actix_web::web::{Data, Json, Query};
+use diesel::{insert_into, PgConnection, QueryDsl, RunQueryDsl, update};
 use serde::{Deserialize};
-use crate::models::ChatRoom;
+use crate::{Context};
+use crate::models::{ChatRoom, NewChatRoom, UpdateChatRoom};
 use crate::schema::escambiadb::chat_room;
 
 #[derive(Deserialize)]
-pub struct ChatRoomRequest {
+pub struct GetChatRoomInfo {
+    id: i32,
+}
+
+#[derive(Deserialize)]
+pub struct AddChatRoomRequest {
     host_user_id: i32,
     user_id_list: Vec<i32>,
 }
 
-
-pub async fn create_chat_room(pool: Data<Context>, request: Json<ChatRoomRequest>) -> impl Responder {
-    let conn = pool.db.get().unwrap();
-    insert_chat_room(ChatRoom {
-        chat_room_id: None,
-        host_user_id: request.host_user_id.clone(),
-        user_id_list: request.user_id_list.clone(),
-        status: None,
-        creation_date: chrono::NaiveDateTime::from_timestamp(chrono::Utc::now().timestamp(), 0),
-    }, &conn).expect("Failed to insert chat room");
-    HttpResponse::Ok().body("")
+#[derive(Deserialize)]
+pub struct UpdateChatRoomRequest {
+    chat_room_id: i32,
+    user_id_list: Vec<i32>,
+    status: i32,
 }
 
+pub async fn get_chat_room_info(pool: Data<Context>, id: Query<GetChatRoomInfo>) -> impl Responder{
+    let connection = pool.db.get().unwrap();
+    let data = select_db_chat_room(id.id, &connection);
+    HttpResponse::Ok().json(data)
+}
 
-fn insert_chat_room(object: ChatRoom, conn: &PgConnection) -> QueryResult<()> {
-    let _ = diesel::insert_into(chat_room::table)
+pub async fn create_chat_room(pool: Data<Context>, request: Json<AddChatRoomRequest>) -> impl Responder {
+    let connection = pool.db.get().unwrap();
+    let new_chat_room = NewChatRoom {
+        host_user_id: request.host_user_id,
+        user_id_list: request.user_id_list.clone(),
+        creation_date: chrono::Local::now().naive_local(),
+    };
+    let result = insert_db_chat_room(new_chat_room, &connection);
+    HttpResponse::Ok().body(serde_json::to_string(&result).unwrap())
+}
+
+pub async fn update_chat_room(pool: Data<Context>, request: Json<UpdateChatRoomRequest>) -> impl Responder {
+    let connection = pool.db.get().unwrap();
+    let edit_chat_room = UpdateChatRoom {
+        user_id_list: request.user_id_list.clone(),
+        status: request.status.clone(),
+    };
+    let result = update_db_chat_room(request.chat_room_id, edit_chat_room, &connection);
+    HttpResponse::Ok().body(serde_json::to_string(&result).unwrap())
+}
+
+fn select_db_chat_room(id: i32, connection: &PgConnection) -> ChatRoom {
+    chat_room::table.find(id).get_result::<ChatRoom>(connection).unwrap()
+}
+
+fn insert_db_chat_room(object: NewChatRoom, connection: &PgConnection) -> ChatRoom {
+    insert_into(chat_room::table)
         .values(object)
-        .execute(conn)?;
-    Ok(())
+        .get_result::<ChatRoom>(connection).unwrap()
+}
+
+fn update_db_chat_room(target: i32, object: UpdateChatRoom, connection: &PgConnection) -> ChatRoom {
+    let orignal_chat_room = chat_room::table.find(target);
+    update(orignal_chat_room)
+        .set(object)
+        .get_result::<ChatRoom>(connection).unwrap()
 }

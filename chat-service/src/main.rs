@@ -28,7 +28,9 @@ async fn main() -> std::io::Result<()> {
             .wrap(Logger::default())
             .wrap(Logger::new("%a %{User-Agent}i"))
             .route("/", web::get().to(index))
+            .route("/getChatRoomInfo", web::get().to(chat::get_chat_room_info))
             .route("/createChatRoom", web::post().to(chat::create_chat_room))
+            .route("/updateChatRoom", web::patch().to(chat::update_chat_room))
             .app_data(Data::new(Context {
                 db: pool.clone()
             }))

@@ -1,4 +1,5 @@
 use crate::schema::escambiadb::chat_room;
+use serde::Serialize;
 
 #[derive(Queryable)]
 pub struct UserInfo {
@@ -21,13 +22,28 @@ pub struct UserInfo {
     pub user_pic: Option<String>,
 }
 
-#[derive(Queryable, Insertable)]
+#[derive(Queryable, Identifiable, Serialize)]
 #[table_name = "chat_room"]
+#[primary_key(chat_room_id)]
 pub struct ChatRoom {
-    pub chat_room_id: Option<i32>,
+    pub chat_room_id: i32,
     pub host_user_id: i32,
     pub user_id_list: Vec<i32>,
-    pub status: Option<i32>,
+    pub status: i32,
     pub creation_date: chrono::NaiveDateTime,
 }
 
+#[derive(Insertable)]
+#[table_name = "chat_room"]
+pub struct NewChatRoom {
+    pub host_user_id: i32,
+    pub user_id_list: Vec<i32>,
+    pub creation_date: chrono::NaiveDateTime,
+}
+
+#[derive(AsChangeset)]
+#[table_name = "chat_room"]
+pub struct UpdateChatRoom {
+    pub user_id_list: Vec<i32>,
+    pub status: i32,
+}
