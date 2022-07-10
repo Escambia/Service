@@ -13,7 +13,7 @@ fn init_pool() -> Result<PgPool, PoolError> {
             "postgresql://chisakikirino:Ming137137@localhost:5432/postgres"
         }
     );
-    Pool::builder().build(manager)
+    Pool::builder().max_size(20).build(manager)
 }
 
 pub fn establish_connection() -> PgPool {
