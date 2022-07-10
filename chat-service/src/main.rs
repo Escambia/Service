@@ -7,8 +7,11 @@ mod chat;
 mod schema;
 mod models;
 
+use chat::*;
 use db::{establish_connection, PgPool};
 use actix_web::{App, HttpResponse, HttpServer, Responder, web::{Data}, web};
+use utoipa::{OpenApi};
+use utoipa_swagger_ui::{SwaggerUi};
 use std::env;
 use actix_web::middleware::{Logger};
 
@@ -19,12 +22,27 @@ pub struct Context {
 
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
-    if (env::var("PROFILE").unwrap() == "prod") {
+    if env::var("PROFILE").unwrap() == "prod" {
         env::set_var("RUST_LOG", "actix_web=info,info");
     } else {
         env::set_var("RUST_LOG", "actix_web=debug,debug");
     }
     env_logger::init();
+
+    #[derive(OpenApi)]
+    #[openapi(
+        components(
+            GetChatRoomInfo,
+            AddChatRoomRequest,
+            UpdateChatRoomRequest,
+        ),
+        handlers(
+            get_chat_room_info,
+            create_chat_room,
+            update_chat_room
+        )
+    )]
+    struct ApiDoc;
 
     let pool = establish_connection();
 
@@ -33,12 +51,11 @@ async fn main() -> std::io::Result<()> {
             .wrap(Logger::default())
             .wrap(Logger::new("%a %{User-Agent}i"))
             .route("/", web::get().to(index))
-            .route("/getChatRoomInfo", web::get().to(chat::get_chat_room_info))
-            .route("/createChatRoom", web::post().to(chat::create_chat_room))
-            .route("/updateChatRoom", web::patch().to(chat::update_chat_room))
-            .app_data(Data::new(Context {
-                db: pool.clone()
-            }))
+            .route("/getChatRoomInfo", web::post().to(get_chat_room_info))
+            .route("/createChatRoom", web::post().to(create_chat_room))
+            .route("/updateChatRoom", web::patch().to(update_chat_room))
+            .service(SwaggerUi::new("/swagger-ui/{_:.*}").url("/api-doc/openapi.json", ApiDoc::openapi()))
+            .app_data(Data::new(Context { db: pool.clone() }))
     })
         .bind(("127.0.0.1", 8081))
         .expect("Unable to bind port")
