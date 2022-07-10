@@ -9,6 +9,7 @@ mod models;
 
 use db::{establish_connection, PgPool};
 use actix_web::{App, HttpResponse, HttpServer, Responder, web::{Data}, web};
+use std::env;
 use actix_web::middleware::{Logger};
 
 #[derive(Clone)]
@@ -18,7 +19,11 @@ pub struct Context {
 
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
-    std::env::set_var("RUST_LOG", "actix_web=debug,debug");
+    if (env::var("PROFILE").unwrap() == "prod") {
+        env::set_var("RUST_LOG", "actix_web=info,info");
+    } else {
+        env::set_var("RUST_LOG", "actix_web=debug,debug");
+    }
     env_logger::init();
 
     let pool = establish_connection();
