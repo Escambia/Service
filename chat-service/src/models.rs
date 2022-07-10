@@ -31,6 +31,7 @@ pub struct ChatRoom {
     pub user_id_list: Vec<i32>,
     pub status: i32,
     pub creation_date: chrono::NaiveDateTime,
+    pub inventory_id: i32,
 }
 
 #[derive(Insertable)]
@@ -39,6 +40,7 @@ pub struct NewChatRoom {
     pub host_user_id: i32,
     pub user_id_list: Vec<i32>,
     pub creation_date: chrono::NaiveDateTime,
+    pub inventory_id: i32,
 }
 
 #[derive(AsChangeset)]

@@ -21,6 +21,7 @@ pub mod escambiadb {
             user_id_list -> Array<Int4>,
             status -> Int4,
             creation_date -> Timestamp,
+            inventory_id -> Int4,
         }
     }
 
