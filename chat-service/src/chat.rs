@@ -51,7 +51,7 @@ pub async fn update_chat_room(pool: Data<Context>, request: Json<UpdateChatRoomR
     let connection = pool.db.get().unwrap();
     let edit_chat_room = UpdateChatRoom {
         user_id_list: request.user_id_list.clone(),
-        status: request.status.clone(),
+        status: request.status,
     };
     let result = update_db_chat_room(request.chat_room_id, edit_chat_room, &connection);
     HttpResponse::Ok().body(serde_json::to_string(&result).unwrap())
