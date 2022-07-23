@@ -9,6 +9,7 @@ mod models;
 mod server;
 mod handler;
 
+use std::collections::HashMap;
 use chat::*;
 use db::{establish_connection, PgPool};
 use actix_web::{App, Error, HttpRequest, HttpResponse, HttpServer, Responder, web::{Data}, web};
@@ -16,6 +17,7 @@ use utoipa::{OpenApi};
 use utoipa_swagger_ui::{SwaggerUi};
 use std::env;
 use actix_web::middleware::{Logger};
+use actix_web::web::Query;
 use crate::server::{ChatServer, ChatServerHandle};
 use tokio::{
     task::{spawn, spawn_local},
@@ -24,6 +26,7 @@ use tokio::{
 
 pub type ConnId = usize;
 pub type RoomId = String;
+pub type UserId = String;
 pub type Msg = String;
 
 #[derive(Clone)]
@@ -108,12 +111,15 @@ async fn chat_ws(
     req: HttpRequest,
     stream: web::Payload,
     chat_server: Data<ChatServerHandle>,
+    query: Query<HashMap<String, String>>
 ) -> Result<HttpResponse, Error> {
     let (res, session, msg_stream) = actix_ws::handle(&req, stream)?;
     spawn_local(handler::chat_ws(
         (**chat_server).clone(),
         session,
         msg_stream,
+        query.get("room").unwrap().to_owned(),
+        query.get("user").unwrap().to_owned(),
     ));
 
     Ok(res)
