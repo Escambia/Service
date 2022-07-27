@@ -1,14 +1,14 @@
 use actix_web::{HttpResponse, Responder};
-use actix_web::web::{Data, Json};
+use actix_web::web::{Data, Json, Query};
 use diesel::{insert_into, PgConnection, QueryDsl, RunQueryDsl, update};
 use serde::{Deserialize};
-use utoipa::{Component};
+use utoipa::{Component, IntoParams};
 use crate::{Context};
 use crate::models::{ChatRoom, NewChatRoom, UpdateChatRoom};
 use crate::schema::escambiadb::chat_room;
 
-#[derive(Deserialize, Component)]
-pub struct GetChatRoomInfo {
+#[derive(Deserialize, Debug, IntoParams)]
+pub struct GetChatRoomRequest {
     id: i32,
 }
 
@@ -26,8 +26,8 @@ pub struct UpdateChatRoomRequest {
     status: i32,
 }
 
-#[utoipa::path(post, path = "/getChatRoomInfo", request_body(content_type = "application/json", content = GetChatRoomInfo))]
-pub async fn get_chat_room_info(pool: Data<Context>, id: Json<GetChatRoomInfo>) -> impl Responder{
+#[utoipa::path(get, path = "/getChatRoomInfo", params())]
+pub async fn get_chat_room_info(pool: Data<Context>, id: Query<GetChatRoomRequest>) -> impl Responder{
     let connection = pool.db.get().unwrap();
     let data = select_db_chat_room(id.id, &connection);
     HttpResponse::Ok().json(data)

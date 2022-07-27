@@ -48,7 +48,6 @@ async fn main() -> std::io::Result<()> {
     #[derive(OpenApi)]
     #[openapi(
     components(
-    GetChatRoomInfo,
     AddChatRoomRequest,
     UpdateChatRoomRequest,
     ),
@@ -67,7 +66,7 @@ async fn main() -> std::io::Result<()> {
             .wrap(Logger::default())
             .wrap(Logger::new("%a %{User-Agent}i"))
             .route("/", web::get().to(index))
-            .route("/getChatRoomInfo", web::post().to(get_chat_room_info))
+            .route("/getChatRoomInfo", web::get().to(get_chat_room_info))
             .route("/createChatRoom", web::post().to(create_chat_room))
             .route("/updateChatRoom", web::patch().to(update_chat_room))
             .service(web::resource("/ws").route(web::get().to(chat_ws)))
