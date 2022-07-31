@@ -25,12 +25,6 @@ jobs:
             use-cross: true
             command: build
             args: --release --target aarch64-unknown-linux-gnu --manifest-path chat-service/Cargo.toml
-      - name: List Files
-        run: ls -la
-      - name: List Files in target
-        run: ls -la target/
-      - name: PWD
-        run: pwd
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
