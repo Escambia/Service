@@ -29,7 +29,6 @@ pub struct GetChatHistoryRequest {
 pub struct AddChatMessageRequest {
     pub chat_room_id: i32,
     pub sent_user_id: i32,
-    pub receive_user_id_list: Vec<i32>,
     pub message_content: String,
     pub sent_datetime: chrono::NaiveDateTime,
 }

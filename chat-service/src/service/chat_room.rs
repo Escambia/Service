@@ -82,4 +82,21 @@ impl ChatRoom {
             _ => Err(anyhow!("Chat room not updated.")),
         }
     }
+
+    pub async fn get_user_id_list(pool: &PgPool, chat_room_id: i32) -> Result<Vec<i32>> {
+        let result = sqlx::query!(
+            "(select host_user_id user_id from escambiadb.chat_room where chat_room_id = $1) union all (select unnest(user_id_list) user_id from escambiadb.chat_room where chat_room_id = $1)",
+            chat_room_id
+        )
+        .fetch_all(pool)
+        .await?;
+
+        let mut user_id_list: Vec<i32> = Vec::new();
+
+        result.iter().for_each(|row| {
+            user_id_list.push(row.user_id.unwrap());
+        });
+
+        Ok(user_id_list)
+    }
 }

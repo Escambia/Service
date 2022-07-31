@@ -211,10 +211,14 @@ use std::{
 
 use rand::{thread_rng, Rng as _};
 use tokio::sync::{mpsc, oneshot};
+use awc::{Client};
+use serde::Serialize;
+use serde_json::json;
 
 use crate::router::model::AddChatMessageRequest;
 use crate::service::chat_history::ChatHistory;
 use crate::{ConnId, Msg, PgPool, RoomId, UserId};
+use crate::service::chat_room::ChatRoom;
 
 /// A command received by the [`ChatServer`].
 #[derive(Debug)]
@@ -438,12 +442,27 @@ impl ChatServerHandle {
         let request = AddChatMessageRequest {
             chat_room_id: room.parse().unwrap(),
             sent_user_id: user.parse().unwrap(),
-            receive_user_id_list: vec![],
-            message_content: message,
+            message_content: message.clone(),
             sent_datetime: chrono::Local::now().naive_local(),
         };
 
         ChatHistory::save_chat_history(pool, request).await;
+        let user_id_list = ChatRoom::get_user_id_list(pool, room.parse().unwrap()).await;
+
+        let client = Client::new();
+
+        let mut notification_request_list = Vec::new();
+        user_id_list.unwrap().iter().for_each(|receive_user_id| {
+            notification_request_list.push(SentApnsNotificationRequest {
+                sent_user_id: user.parse().unwrap(),
+                receive_user_id: *receive_user_id,
+                message: message.clone()
+            });
+        });
+
+        client.post("https://web.mingchang.tw/escambia/main/notification/chatNotification")
+            .send_body(json!(notification_request_list).to_string())
+            .await.expect("Failed to send notification");
 
         // unwrap: chat server does not drop our response channel
         res_rx.await.unwrap();
@@ -456,4 +475,12 @@ impl ChatServerHandle {
             .send(Command::Disconnect { conn, user })
             .unwrap();
     }
+}
+
+#[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct SentApnsNotificationRequest {
+    pub sent_user_id: i32,
+    pub receive_user_id: i32,
+    pub message: String,
 }
