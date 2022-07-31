@@ -40,7 +40,7 @@ async fn main() -> Result<()> {
             .service(web::resource("/ws").route(web::get().to(chat_ws)))
             .configure(router::init)
     })
-    .bind(("127.0.0.1", 8081))
+    .bind(("0.0.0.0", 8081))
     .expect("Unable to bind port")
     .run()
     .await?;
