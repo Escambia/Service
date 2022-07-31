@@ -19,6 +19,11 @@ jobs:
         with:
             toolchain: stable
             target: aarch64-unknown-linux-gnu
+      - name: Run Cargo Check
+        uses: actions-rs/cargo@v1
+        with:
+            command: check
+            args: --manifest-path chat-service/Cargo.toml
       - name: Build with Cargo
         uses: actions-rs/cargo@v1
         with:
