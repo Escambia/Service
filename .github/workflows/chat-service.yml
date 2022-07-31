@@ -23,7 +23,7 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
             command: build
-            args: --release --all-feature --target aarch64-unknown-linux-gnu
+            args: --release --target aarch64-unknown-linux-gnu
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
