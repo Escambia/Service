@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
 
+import java.util.List;
+
 @RestController
 @Tag(name = "推播通知")
 @RequestMapping("/notification")
@@ -30,7 +32,7 @@ public class NotificationController {
 
     @Operation(summary = "發送聊天室推播通知（後端溝通用，App勿用）")
     @PostMapping("/chatNotification")
-    public Mono<Void> chatNotification(SentApnsNotificationRequest request) {
+    public Mono<Void> chatNotification(List<SentApnsNotificationRequest> request) {
         return notificationService.chatNotification(request);
     }
 }

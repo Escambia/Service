@@ -6,10 +6,13 @@ import com.escambia.official.webservice.repository.UserInfoRepository;
 import com.escambia.official.webservice.service.NotificationService;
 import com.escambia.official.webservice.utility.ApnsUtility;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 import reactor.util.function.Tuple2;
 import reactor.util.function.Tuples;
+
+import java.util.List;
 
 @Service
 public class NotificationServiceImpl implements NotificationService {
@@ -34,18 +37,18 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-    public Mono<Void> chatNotification(SentApnsNotificationRequest request) {
-        return Mono.zip(
-                        userInfoRepository.findById(request.getSentUserId()),
-                        userInfoRepository.findById(request.getReceiveUserId())
+    public Mono<Void> chatNotification(List<SentApnsNotificationRequest> request) {
+        return Flux.fromIterable(request).flatMap(sentApnsNotificationRequest -> Mono.zip(
+                        userInfoRepository.findById(sentApnsNotificationRequest.getSentUserId()),
+                        userInfoRepository.findById(sentApnsNotificationRequest.getReceiveUserId())
                 )
                 .publishOn(Schedulers.boundedElastic())
                 .flatMap(tuple -> {
                     String sentUserName = tuple.getT1().getUserName();
-                    String message = request.getMessage();
+                    String message = sentApnsNotificationRequest.getMessage();
                     return Mono.fromCallable(() -> apnsUtility.createNotification(sentUserName, message, InterruptionLevel.CRITICAL, tuple.getT2().getApnToken()))
                             .publishOn(Schedulers.boundedElastic())
-                            .flatMap(apnsUtility::sentNotification).then();
-                });
+                            .flatMap(apnsUtility::sentNotification);
+                })).then();
     }
 }

@@ -4,10 +4,12 @@ import com.escambia.official.webservice.model.request.SentApnsNotificationReques
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
 
+import java.util.List;
+
 public interface NotificationService {
 
     Mono<Tuple2<Integer, String>> notificationTest(String apnsToken);
 
-    Mono<Void> chatNotification(SentApnsNotificationRequest request);
+    Mono<Void> chatNotification(List<SentApnsNotificationRequest> request);
 
 }
