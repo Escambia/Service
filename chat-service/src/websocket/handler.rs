@@ -202,219 +202,157 @@
 //!    See the License for the specific language governing permissions and
 //!    limitations under the License.
 
-//! A multi-room chat server.
+use actix_web::web::Data;
+use std::time::{Duration, Instant};
 
-use std::{
-    collections::{HashMap, HashSet},
-    io,
-    sync::{
-        atomic::{AtomicUsize},
-        Arc,
-    },
+use actix_ws::Message;
+use futures_util::{
+    future::{select, Either},
+    StreamExt as _,
 };
+use tokio::{pin, sync::mpsc, time::interval};
 
-use rand::{thread_rng, Rng as _};
-use tokio::sync::{mpsc, oneshot};
+use crate::{ChatServerHandle, ConnId, PgPool, RoomId, UserId};
 
-use crate::{ConnId, Msg, RoomId, UserId};
+/// How often heartbeat pings are sent
+const HEARTBEAT_INTERVAL: Duration = Duration::from_secs(5);
 
-/// A command received by the [`ChatServer`].
-#[derive(Debug)]
-enum Command {
-    Connect {
-        conn_tx: mpsc::UnboundedSender<Msg>,
-        res_tx: oneshot::Sender<ConnId>,
-        room: RoomId,
-        user: UserId,
-    },
+/// How long before lack of client response causes a timeout
+const CLIENT_TIMEOUT: Duration = Duration::from_secs(10);
 
-    Disconnect {
-        conn: ConnId,
-        user: UserId,
-    },
+/// Echo text & binary messages received from the client, respond to ping messages, and monitor
+/// connection health to detect network issues and free up resources.
+pub async fn chat_ws(
+    chat_server: ChatServerHandle,
+    mut session: actix_ws::Session,
+    mut msg_stream: actix_ws::MessageStream,
+    room: RoomId,
+    user: UserId,
+    pool: Data<PgPool>,
+) {
+    log::info!("connected");
 
-    Message {
-        msg: Msg,
-        conn: ConnId,
-        user: UserId,
-        res_tx: oneshot::Sender<()>,
-    },
-}
+    let mut name = None;
+    let mut last_heartbeat = Instant::now();
+    let mut interval = interval(HEARTBEAT_INTERVAL);
 
-/// A multi-room chat server.
-///
-/// Contains the logic of how connections chat with each other plus room management.
-///
-/// Call and spawn [`run`](Self::run) to start processing commands.
-#[derive(Debug)]
-pub struct ChatServer {
-    /// Map of connection IDs to their message receivers.
-    sessions: HashMap<(ConnId, UserId), mpsc::UnboundedSender<Msg>>,
+    let (conn_tx, mut conn_rx) = mpsc::unbounded_channel();
 
-    /// Map of room name to participant IDs in that room.
-    rooms: HashMap<RoomId, HashSet<(ConnId, UserId)>>,
+    // unwrap: chat server is not dropped before the HTTP server
+    let conn_id = chat_server
+        .connect(conn_tx, room.clone(), user.clone())
+        .await;
 
-    /// Tracks total number of historical connections established.
-    visitor_count: Arc<AtomicUsize>,
+    let close_reason = loop {
+        // most of the futures we process need to be stack-pinned to work with select()
 
-    /// Command receiver.
-    cmd_rx: mpsc::UnboundedReceiver<Command>,
-}
+        let tick = interval.tick();
+        pin!(tick);
 
-impl ChatServer {
-    pub fn new() -> (Self, ChatServerHandle) {
-        // create empty server
-        let mut rooms = HashMap::with_capacity(4);
+        let msg_rx = conn_rx.recv();
+        pin!(msg_rx);
 
-        // create default room
-        rooms.insert("main".to_owned(), HashSet::new());
+        // TODO: nested select is pretty gross for readability on the match
+        let messages = select(msg_stream.next(), msg_rx);
+        pin!(messages);
 
-        let (cmd_tx, cmd_rx) = mpsc::unbounded_channel();
+        match select(messages, tick).await {
+            // commands & messages received from client
+            Either::Left((Either::Left((Some(Ok(msg)), _)), _)) => {
+                log::debug!("msg: {msg:?}");
 
-        (
-            Self {
-                sessions: HashMap::new(),
-                rooms,
-                visitor_count: Arc::new(AtomicUsize::new(0)),
-                cmd_rx,
-            },
-            ChatServerHandle { cmd_tx },
-        )
-    }
+                match msg {
+                    Message::Ping(bytes) => {
+                        last_heartbeat = Instant::now();
+                        // unwrap:
+                        session.pong(&bytes).await.unwrap();
+                    }
 
-    /// Send message to users in a room.
-    ///
-    /// `skip` is used to prevent messages triggered by a connection also being received by it.
-    async fn send_system_message(&self, room: &str, skip: ConnId, msg: impl Into<String>) {
-        if let Some(sessions) = self.rooms.get(room) {
-            let msg = msg.into();
+                    Message::Pong(_) => {
+                        last_heartbeat = Instant::now();
+                    }
 
-            for session in sessions {
-                if session.0 != skip {
-                    if let Some(tx) = self.sessions.get(session) {
-                        // errors if client disconnected abruptly and hasn't been timed-out yet
-                        let _ = tx.send(msg.clone());
+                    Message::Text(text) => {
+                        process_text_msg(
+                            &chat_server,
+                            &text,
+                            conn_id,
+                            room.clone(),
+                            user.clone(),
+                            &mut name,
+                            pool.get_ref(),
+                        )
+                        .await;
+                    }
+
+                    Message::Binary(_bin) => {
+                        log::warn!("unexpected binary message");
+                    }
+
+                    Message::Close(reason) => break reason,
+
+                    _ => {
+                        break None;
                     }
                 }
             }
-        }
-    }
 
-    /// Send message to all other users in current room.
-    ///
-    /// `conn` is used to find current room and prevent messages sent by a connection also being
-    /// received by it.
-    async fn send_message(&self, conn: (ConnId, UserId), msg: impl Into<String>) {
-        if let Some(room) = self
-            .rooms
-            .iter()
-            .find_map(|(room, participants)| participants.contains(&conn).then_some(room))
-        {
-            self.send_system_message(room, conn.0, msg).await;
+            // client WebSocket stream error
+            Either::Left((Either::Left((Some(Err(err)), _)), _)) => {
+                log::error!("{}", err);
+                break None;
+            }
+
+            // client WebSocket stream ended
+            Either::Left((Either::Left((None, _)), _)) => break None,
+
+            // chat messages received from other room participants
+            Either::Left((Either::Right((Some(chat_msg), _)), _)) => {
+                session.text(chat_msg).await.unwrap();
+            }
+
+            // all connection's message senders were dropped
+            Either::Left((Either::Right((None, _)), _)) => unreachable!(
+                "all connection message senders were dropped; chat server may have panicked"
+            ),
+
+            // heartbeat internal tick
+            Either::Right((_inst, _)) => {
+                // if no heartbeat ping/pong received recently, close the connection
+                if Instant::now().duration_since(last_heartbeat) > CLIENT_TIMEOUT {
+                    log::info!(
+                        "client has not sent heartbeat in over {CLIENT_TIMEOUT:?}; disconnecting"
+                    );
+                    break None;
+                }
+
+                // send heartbeat ping
+                let _ = session.ping(b"").await;
+            }
         };
-    }
+    };
 
-    /// Register new session and assign unique ID to this session
-    async fn connect(&mut self, tx: mpsc::UnboundedSender<Msg>, room: RoomId, user: UserId) -> ConnId {
-        // register session with random connection ID
-        let id = thread_rng().gen::<usize>();
-        self.sessions.insert((id, user.clone()), tx);
+    chat_server.disconnect(conn_id, user.clone());
 
-        // auto join session to main room
-        self.rooms
-            .entry(room)
-            .or_insert_with(HashSet::new)
-            .insert((id, user));
-
-        // send id back
-        id
-    }
-
-    /// Unregister connection from room map and broadcast disconnection message.
-    async fn disconnect(&mut self, conn_id: ConnId, user: UserId) {
-        println!("Someone disconnected");
-
-        let mut rooms: Vec<String> = Vec::new();
-
-        // remove sender
-        if self.sessions.remove(&(conn_id, user.clone())).is_some() {
-            // remove session from all rooms
-            for (name, sessions) in &mut self.rooms {
-                if sessions.remove(&(conn_id, user.clone())) {
-                    rooms.push(name.to_owned());
-                }
-            }
-        }
-    }
-
-    // 這邊處理WebSocket傳進來的指令
-    pub async fn run(mut self) -> io::Result<()> {
-        while let Some(cmd) = self.cmd_rx.recv().await {
-            match cmd {
-                // TODO: 加入的時候就提供user_id跟room_id
-                Command::Connect { conn_tx, res_tx, room, user } => {
-                    let conn_id = self.connect(conn_tx, room, user).await;
-                    let _ = res_tx.send(conn_id);
-                }
-
-                Command::Disconnect { conn, user } => {
-                    self.disconnect(conn, user).await;
-                }
-
-                Command::Message { conn, user,  msg, res_tx } => {
-                    self.send_message((conn, user), msg).await;
-                    let _ = res_tx.send(());
-                }
-            }
-        }
-
-        Ok(())
-    }
+    // attempt to close connection gracefully
+    let _ = session.close(close_reason).await;
 }
 
-/// Handle and command sender for chat server.
-///
-/// Reduces boilerplate of setting up response channels in WebSocket handlers.
-#[derive(Debug, Clone)]
-pub struct ChatServerHandle {
-    cmd_tx: mpsc::UnboundedSender<Command>,
-}
+async fn process_text_msg(
+    chat_server: &ChatServerHandle,
+    text: &str,
+    conn: ConnId,
+    room: RoomId,
+    user: UserId,
+    name: &mut Option<String>,
+    pool: &PgPool,
+) {
+    // strip leading and trailing whitespace (spaces, newlines, etc.)
+    let msg = text.trim();
+    let msg = match name {
+        Some(ref name) => format!("{name}: {msg}"),
+        None => msg.to_owned(),
+    };
 
-impl ChatServerHandle {
-    /// Register client message sender and obtain connection ID.
-    pub async fn connect(&self, conn_tx: mpsc::UnboundedSender<String>, room: RoomId , user: UserId) -> ConnId {
-        let (res_tx, res_rx) = oneshot::channel();
-
-        // unwrap: chat server should not have been dropped
-        self.cmd_tx
-            .send(Command::Connect { conn_tx, res_tx, room, user })
-            .unwrap();
-
-        // unwrap: chat server does not drop out response channel
-        res_rx.await.unwrap()
-    }
-
-    /// Broadcast message to current room.
-    pub async fn send_message(&self, conn: ConnId, user: UserId, msg: impl Into<String>) {
-        let (res_tx, res_rx) = oneshot::channel();
-
-        // unwrap: chat server should not have been dropped
-        self.cmd_tx
-            .send(Command::Message {
-                msg: msg.into(),
-                conn,
-                user,
-                res_tx,
-            })
-            .unwrap();
-
-        // unwrap: chat server does not drop our response channel
-        res_rx.await.unwrap();
-    }
-
-    /// Unregister message sender and broadcast disconnection message to current room.
-    pub fn disconnect(&self, conn: ConnId, user: UserId) {
-        // unwrap: chat server should not have been dropped
-        self.cmd_tx.send(Command::Disconnect { conn, user }).unwrap();
-    }
+    chat_server.send_message(conn, room, user, msg, pool).await
 }

@@ -1,93 +1,60 @@
-#[macro_use]
-extern crate diesel;
-extern crate env_logger;
-
-mod db;
-mod chat;
-mod schema;
-mod models;
-mod server;
-mod handler;
-
+use crate::websocket::handler;
+use crate::websocket::server::{ChatServer, ChatServerHandle};
+use actix_web::web::{Data, Query};
+use actix_web::{web, App, Error, HttpRequest, HttpResponse, HttpServer, Responder};
+use anyhow::Result;
+use dotenv::dotenv;
+use sqlx::PgPool;
 use std::collections::HashMap;
-use chat::*;
-use db::{establish_connection, PgPool};
-use actix_web::{App, Error, HttpRequest, HttpResponse, HttpServer, Responder, web::{Data}, web};
-use utoipa::{OpenApi};
-use utoipa_swagger_ui::{SwaggerUi};
 use std::env;
-use actix_web::middleware::{Logger};
-use actix_web::web::Query;
-use crate::server::{ChatServer, ChatServerHandle};
-use tokio::{
-    task::{spawn, spawn_local},
-    try_join,
-};
+use tokio::task::{spawn, spawn_local};
+
+pub mod router;
+pub mod service;
+pub mod websocket;
 
 pub type ConnId = usize;
 pub type RoomId = String;
 pub type UserId = String;
 pub type Msg = String;
 
-#[derive(Clone)]
-pub struct Context {
-    pub db: PgPool,
-}
+#[global_allocator]
+static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
 
 #[tokio::main(flavor = "current_thread")]
-async fn main() -> std::io::Result<()> {
-    let (chat_server, server_tx) = ChatServer::new();
-    let chat_server = spawn(chat_server.run());
-    if env::var("PROFILE").unwrap() == "prod" {
-        env::set_var("RUST_LOG", "actix_web=info,info");
-    } else {
-        env::set_var("RUST_LOG", "actix_web=debug,debug");
-    }
+async fn main() -> Result<()> {
+    dotenv().ok();
     env_logger::init();
 
-    #[derive(OpenApi)]
-    #[openapi(
-    components(
-    AddChatRoomRequest,
-    UpdateChatRoomRequest,
-    ),
-    handlers(
-    get_chat_room_info,
-    create_chat_room,
-    update_chat_room
-    )
-    )]
-    struct ApiDoc;
+    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL is not set in env.");
+    let db_pool = PgPool::connect(&database_url).await?;
 
-    let pool = establish_connection();
+    let (chat_server, server_tx) = ChatServer::new();
+    let chat_server = spawn(chat_server.run());
 
-    let http_server = HttpServer::new(move || {
+    HttpServer::new(move || {
         App::new()
-            .wrap(Logger::default())
-            .wrap(Logger::new("%a %{User-Agent}i"))
+            .app_data(Data::new(db_pool.clone()))
+            .app_data(Data::new(server_tx.clone()))
             .route("/", web::get().to(index))
-            .route("/getChatRoomInfo", web::get().to(get_chat_room_info))
-            .route("/createChatRoom", web::post().to(create_chat_room))
-            .route("/updateChatRoom", web::patch().to(update_chat_room))
             .service(web::resource("/ws").route(web::get().to(chat_ws)))
-            .service(SwaggerUi::new("/swagger-ui/{_:.*}").url("/api-doc/openapi.json", ApiDoc::openapi()))
-            .app_data(Data::new(Context { db: pool.clone() }))
-            .app_data(web::Data::new(server_tx.clone()))
+            .configure(router::init)
     })
-        .bind(("127.0.0.1", 8081))
-        .expect("Unable to bind port")
-        .run();
+    .bind(("127.0.0.1", 8081))
+    .expect("Unable to bind port")
+    .run()
+    .await?;
 
-    match try_join!(http_server, async move { chat_server.await.unwrap() }) {
-        Ok(_) => Ok(()),
-        Err(e) => Err(e),
-    }
+    chat_server.await?.expect("TODO: panic message");
+
+    Ok(())
 }
 
 async fn index() -> impl Responder {
     HttpResponse::Ok()
         .append_header(("content-type", "text/html"))
-        .body(r#"
+        .body(
+            r#"
         _____                        _     _
        |  ___|                      | |   (_)
        | |__ ___  ___ __ _ _ __ ___ | |__  _  __ _
@@ -103,14 +70,16 @@ async fn index() -> impl Responder {
  | \__/\ | | | (_| | |_/\__/ /  __/ |   \ V /| | (_|  __/
   \____/_| |_|\__,_|\__\____/ \___|_|    \_/ |_|\___\___|
 
-                                                          "#)
+                                                          "#,
+        )
 }
 
 async fn chat_ws(
     req: HttpRequest,
     stream: web::Payload,
     chat_server: Data<ChatServerHandle>,
-    query: Query<HashMap<String, String>>
+    query: Query<HashMap<String, String>>,
+    pool: Data<PgPool>,
 ) -> Result<HttpResponse, Error> {
     let (res, session, msg_stream) = actix_ws::handle(&req, stream)?;
     spawn_local(handler::chat_ws(
@@ -119,6 +88,7 @@ async fn chat_ws(
         msg_stream,
         query.get("room").unwrap().to_owned(),
         query.get("user").unwrap().to_owned(),
+        pool,
     ));
 
     Ok(res)
