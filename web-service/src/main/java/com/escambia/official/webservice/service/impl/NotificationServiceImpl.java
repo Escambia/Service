@@ -48,7 +48,7 @@ public class NotificationServiceImpl implements NotificationService {
                     String message = sentApnsNotificationRequest.getMessage();
                     return Mono.fromCallable(() -> apnsUtility.createNotification(sentUserName, message, InterruptionLevel.CRITICAL, tuple.getT2().getApnToken()))
                             .publishOn(Schedulers.boundedElastic())
-                            .flatMap(apnsUtility::sentNotification);
+                            .flatMap(notification -> apnsUtility.sentNotification(notification).then());
                 })).then();
     }
 }
