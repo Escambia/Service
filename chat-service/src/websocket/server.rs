@@ -451,7 +451,12 @@ impl ChatServerHandle {
         let client = Client::new();
 
         let mut notification_request_list = Vec::new();
-        user_id_list.unwrap().iter().for_each(|receive_user_id| {
+        user_id_list.unwrap().iter().filter(|&&receive_user_id| {
+            let user_id: i32 = user.parse().unwrap();
+            receive_user_id != user_id
+        })
+            .for_each(|receive_user_id| {
+            println!("receive_user_id: {}", receive_user_id);
             notification_request_list.push(SentApnsNotificationRequest {
                 sent_user_id: user.parse().unwrap(),
                 receive_user_id: *receive_user_id,
@@ -459,11 +464,16 @@ impl ChatServerHandle {
             });
         });
 
-        let json = serde_json::to_string(&notification_request_list);
+        let json = serde_json::to_string(&notification_request_list).unwrap();
 
-        client.post("https://web.mingchang.tw/escambia/main/notification/chatNotification")
-            .send_body(json.unwrap())
+        println!("json: {}", json.clone());
+
+        let request = client.post("https://web.mingchang.tw/escambia/main/notification/chatNotification")
+            .insert_header(("Content-Type", "application/json"))
+            .send_body(json)
             .await.expect("Failed to send notification");
+
+        println!("Response: {:?}", request);
 
         // unwrap: chat server does not drop our response channel
         res_rx.await.unwrap();
