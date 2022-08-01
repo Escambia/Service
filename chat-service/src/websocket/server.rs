@@ -468,7 +468,7 @@ impl ChatServerHandle {
 
         println!("json: {}", json.clone());
 
-        let request = client.post("https://web.mingchang.tw/escambia/main/notification/chatNotification")
+        let request = client.post("http://main:8080/escambia/main/notification/chatNotification")
             .insert_header(("Content-Type", "application/json"))
             .send_body(json)
             .await.expect("Failed to send notification");
