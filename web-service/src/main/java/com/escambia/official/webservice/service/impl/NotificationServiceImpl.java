@@ -5,6 +5,7 @@ import com.escambia.official.webservice.model.request.SentApnsNotificationReques
 import com.escambia.official.webservice.repository.UserInfoRepository;
 import com.escambia.official.webservice.service.NotificationService;
 import com.escambia.official.webservice.utility.ApnsUtility;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -15,6 +16,7 @@ import reactor.util.function.Tuples;
 import java.util.List;
 
 @Service
+@Slf4j
 public class NotificationServiceImpl implements NotificationService {
 
     private final ApnsUtility apnsUtility;
@@ -38,17 +40,17 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public Mono<Void> chatNotification(List<SentApnsNotificationRequest> request) {
-        return Flux.fromIterable(request).flatMap(sentApnsNotificationRequest -> Mono.zip(
+        return Flux.fromIterable(request)
+                .flatMap(sentApnsNotificationRequest -> Mono.zip(
                         userInfoRepository.findById(sentApnsNotificationRequest.getSentUserId()),
-                        userInfoRepository.findById(sentApnsNotificationRequest.getReceiveUserId())
-                )
-                .publishOn(Schedulers.boundedElastic())
-                .flatMap(tuple -> {
-                    String sentUserName = tuple.getT1().getUserName();
-                    String message = sentApnsNotificationRequest.getMessage();
-                    return Mono.fromCallable(() -> apnsUtility.createNotification(sentUserName, message, InterruptionLevel.CRITICAL, tuple.getT2().getApnToken()))
-                            .publishOn(Schedulers.boundedElastic())
-                            .flatMap(notification -> apnsUtility.sentNotification(notification).then());
-                })).then();
+                        userInfoRepository.findById(sentApnsNotificationRequest.getReceiveUserId()),
+                        Mono.just(sentApnsNotificationRequest)
+                ))
+                .flatMap(tuple -> Mono.fromCallable(() -> apnsUtility.createNotification(tuple.getT1().getUserName(), tuple.getT3().getMessage(), InterruptionLevel.CRITICAL, tuple.getT2().getApnToken()))
+                        .publishOn(Schedulers.boundedElastic())
+                        .flatMap(notification -> {
+                            log.info("Notification: {}", notification);
+                            return apnsUtility.sentNotification(notification);
+                        })).then();
     }
 }
