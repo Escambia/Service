@@ -34,11 +34,12 @@ async fn main() -> Result<()> {
 
     HttpServer::new(move || {
         App::new()
+
             .app_data(Data::new(db_pool.clone()))
             .app_data(Data::new(server_tx.clone()))
-            .route("/", web::get().to(index))
-            .service(web::resource("/ws").route(web::get().to(chat_ws)))
-            .configure(router::init)
+            .route("/escambia/chat", web::get().to(index))
+            .service(web::resource("/escambia/chat/ws").route(web::get().to(chat_ws)))
+            .service(web::scope("/escambia/chat").configure(router::init))
     })
     .bind(("0.0.0.0", 8081))
     .expect("Unable to bind port")
