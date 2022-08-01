@@ -466,14 +466,10 @@ impl ChatServerHandle {
 
         let json = serde_json::to_string(&notification_request_list).unwrap();
 
-        println!("json: {}", json.clone());
-
-        let request = client.post("http://main:8080/escambia/main/notification/chatNotification")
+        client.post("http://main:8080/escambia/main/notification/chatNotification")
             .insert_header(("Content-Type", "application/json"))
             .send_body(json)
             .await.expect("Failed to send notification");
-
-        println!("Response: {:?}", request);
 
         // unwrap: chat server does not drop our response channel
         res_rx.await.unwrap();
