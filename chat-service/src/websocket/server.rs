@@ -213,7 +213,6 @@ use rand::{thread_rng, Rng as _};
 use tokio::sync::{mpsc, oneshot};
 use awc::{Client};
 use serde::Serialize;
-use serde_json::json;
 
 use crate::router::model::AddChatMessageRequest;
 use crate::service::chat_history::ChatHistory;
@@ -460,8 +459,10 @@ impl ChatServerHandle {
             });
         });
 
+        let json = serde_json::to_string(&notification_request_list);
+
         client.post("https://web.mingchang.tw/escambia/main/notification/chatNotification")
-            .send_body(json!(notification_request_list).to_string())
+            .send_body(json.unwrap())
             .await.expect("Failed to send notification");
 
         // unwrap: chat server does not drop our response channel
