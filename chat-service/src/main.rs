@@ -1,3 +1,4 @@
+#![forbid(unsafe_code)]
 use crate::websocket::handler;
 use crate::websocket::server::{ChatServer, ChatServerHandle};
 use actix_web::web::{Data, Query};
