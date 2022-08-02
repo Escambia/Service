@@ -17,7 +17,7 @@ impl ChatHistory {
         pool: &PgPool,
         parameter: GetChatHistoryRequest,
     ) -> Result<Vec<ChatHistory>> {
-        let result = sqlx::query!("select * from escambiadb.chat_history where chat_room_id = $1 and chat_history_id >= $2", parameter.chat_room_id, parameter.chat_history_id)
+        let result = sqlx::query!("select * from escambiadb.chat_history where chat_room_id = $1 and sent_datetime = $2", parameter.chat_room_id, parameter.latest_received_datetime)
             .fetch_all(pool)
             .await?;
 

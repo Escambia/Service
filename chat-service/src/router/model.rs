@@ -22,7 +22,7 @@ pub struct UpdateChatRoomRequest {
 #[derive(Deserialize)]
 pub struct GetChatHistoryRequest {
     pub chat_room_id: i32,
-    pub chat_history_id: i32,
+    pub latest_received_datetime: chrono::NaiveDateTime,
 }
 
 #[derive(Deserialize)]

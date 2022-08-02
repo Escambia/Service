@@ -50,51 +50,6 @@
     },
     "query": "select * from escambiadb.chat_room where chat_room_id = $1"
   },
-  "6562ef5e60eea76d278ff700a56528130ebf54b455df9cda50023624a8b7f12e": {
-    "describe": {
-      "columns": [
-        {
-          "name": "chat_history_id",
-          "ordinal": 0,
-          "type_info": "Int4"
-        },
-        {
-          "name": "chat_room_id",
-          "ordinal": 1,
-          "type_info": "Int4"
-        },
-        {
-          "name": "sent_user_id",
-          "ordinal": 2,
-          "type_info": "Int4"
-        },
-        {
-          "name": "message_content",
-          "ordinal": 3,
-          "type_info": "Text"
-        },
-        {
-          "name": "sent_datetime",
-          "ordinal": 4,
-          "type_info": "Timestamp"
-        }
-      ],
-      "nullable": [
-        false,
-        false,
-        false,
-        false,
-        false
-      ],
-      "parameters": {
-        "Left": [
-          "Int4",
-          "Int4"
-        ]
-      }
-    },
-    "query": "select * from escambiadb.chat_history where chat_room_id = $1 and chat_history_id >= $2"
-  },
   "67ece95a56ca8aacdd666ea501871a375f44839a36acfe36af0c558e3ad2973c": {
     "describe": {
       "columns": [
@@ -234,5 +189,50 @@
       }
     },
     "query": "insert into escambiadb.chat_history (chat_room_id, sent_user_id, message_content, sent_datetime) values ($1, $2, $3 ,$4)"
+  },
+  "ebfb048919b05026a284b2040cb2d6d479f79c4716ecb56389f01d18843e2072": {
+    "describe": {
+      "columns": [
+        {
+          "name": "chat_history_id",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "chat_room_id",
+          "ordinal": 1,
+          "type_info": "Int4"
+        },
+        {
+          "name": "sent_user_id",
+          "ordinal": 2,
+          "type_info": "Int4"
+        },
+        {
+          "name": "message_content",
+          "ordinal": 3,
+          "type_info": "Text"
+        },
+        {
+          "name": "sent_datetime",
+          "ordinal": 4,
+          "type_info": "Timestamp"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Int4",
+          "Timestamp"
+        ]
+      }
+    },
+    "query": "select * from escambiadb.chat_history where chat_room_id = $1 and sent_datetime = $2"
   }
 }
