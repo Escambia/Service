@@ -35,7 +35,6 @@ async fn main() -> Result<()> {
 
     HttpServer::new(move || {
         App::new()
-
             .app_data(Data::new(db_pool.clone()))
             .app_data(Data::new(server_tx.clone()))
             .route("/escambia/chat", web::get().to(index))

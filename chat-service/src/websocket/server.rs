@@ -209,15 +209,15 @@ use std::{
     io,
 };
 
+use awc::Client;
 use rand::{thread_rng, Rng as _};
-use tokio::sync::{mpsc, oneshot};
-use awc::{Client};
 use serde::Serialize;
+use tokio::sync::{mpsc, oneshot};
 
 use crate::router::model::AddChatMessageRequest;
 use crate::service::chat_history::ChatHistory;
-use crate::{ConnId, Msg, PgPool, RoomId, UserId};
 use crate::service::chat_room::ChatRoom;
+use crate::{ConnId, Msg, PgPool, RoomId, UserId};
 
 /// A command received by the [`ChatServer`].
 #[derive(Debug)]
@@ -451,25 +451,30 @@ impl ChatServerHandle {
         let client = Client::new();
 
         let mut notification_request_list = Vec::new();
-        user_id_list.unwrap().iter().filter(|&&receive_user_id| {
-            let user_id: i32 = user.parse().unwrap();
-            receive_user_id != user_id
-        })
+        user_id_list
+            .unwrap()
+            .iter()
+            .filter(|&&receive_user_id| {
+                let user_id: i32 = user.parse().unwrap();
+                receive_user_id != user_id
+            })
             .for_each(|receive_user_id| {
-            println!("receive_user_id: {}", receive_user_id);
-            notification_request_list.push(SentApnsNotificationRequest {
-                sent_user_id: user.parse().unwrap(),
-                receive_user_id: *receive_user_id,
-                message: message.clone()
+                println!("receive_user_id: {}", receive_user_id);
+                notification_request_list.push(SentApnsNotificationRequest {
+                    sent_user_id: user.parse().unwrap(),
+                    receive_user_id: *receive_user_id,
+                    message: message.clone(),
+                });
             });
-        });
 
         let json = serde_json::to_string(&notification_request_list).unwrap();
 
-        client.post("http://main:8080/escambia/main/notification/chatNotification")
+        client
+            .post("http://main:8080/escambia/main/notification/chatNotification")
             .insert_header(("Content-Type", "application/json"))
             .send_body(json)
-            .await.expect("Failed to send notification");
+            .await
+            .expect("Failed to send notification");
 
         // unwrap: chat server does not drop our response channel
         res_rx.await.unwrap();
