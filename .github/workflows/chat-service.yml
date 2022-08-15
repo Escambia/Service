@@ -14,12 +14,15 @@ jobs:
     steps:
       - name: GitHub Checkout
         uses: actions/checkout@v3
-      - name: Install musl-tools
+      - name: Install Cross Compile Essentials
         run: |
           set -ex
-          sudo dpkg --add-architecture arm64
-          sudo apt update && sudo apt install -y musl:arm64
-          
+          sudo apt update
+          sudo apt install -qq crossbuild-essential-arm64
+          cat >>~/.cargo/config <<EOF
+          [target.aarch64-unknown-linux-musl]
+          linker = "aarch64-linux-gnu-gcc"
+          EOF
       - name: Setup Rust
         uses: actions-rs/toolchain@v1
         with:
