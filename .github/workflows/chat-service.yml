@@ -18,11 +18,17 @@ jobs:
         run: |
           set -ex
           sudo apt update
+          sudo apt install wget
           sudo apt install -qq crossbuild-essential-arm64
           cat >>~/.cargo/config <<EOF
           [target.aarch64-unknown-linux-musl]
           linker = "aarch64-linux-gnu-gcc"
           EOF
+      - name: Install aarch64-linux-musl-gcc
+        run: |
+          wget https://musl.cc/aarch64-linux-musl-cross.tgz
+          tar -xvzf aarch64-linux-musl-cross.tgz
+          sudo ln -s ./aarch64-linux-musl-cross/bin/aarch64-linux-musl-gcc /usr/bin/aarch64-linux-musl-gcc
       - name: Setup Rust
         uses: actions-rs/toolchain@v1
         with:
