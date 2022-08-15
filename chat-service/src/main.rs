@@ -26,7 +26,6 @@ static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
 async fn main() -> Result<()> {
     dotenv().ok();
     env_logger::init();
-
     let database_url = env::var("DATABASE_URL").unwrap_or_else(|_| "postgresql://postgres:postgres@database.c7zj1xnu7zet.us-west-2.rds.amazonaws.com:5432/postgres".to_string());
     let db_pool = PgPool::connect(&database_url).await?;
 
