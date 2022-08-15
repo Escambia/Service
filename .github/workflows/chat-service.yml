@@ -18,13 +18,12 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
             toolchain: stable
-            target: aarch64-unknown-linux-gnu
+            target: aarch64-unknown-linux-musl
       - name: Build with Cargo
         uses: actions-rs/cargo@v1
         with:
-            use-cross: true
             command: build
-            args: --release --target aarch64-unknown-linux-gnu --manifest-path chat-service/Cargo.toml
+            args: --release --target aarch64-unknown-linux-musl --manifest-path chat-service/Cargo.toml
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
