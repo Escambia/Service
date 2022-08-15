@@ -17,7 +17,9 @@ jobs:
       - name: Install musl-tools
         run: |
           set -ex
-          sudo apt update && sudo apt install -y musl-tools
+          sudo dpkg --add-architecture arm64
+          sudo apt update && sudo apt install -y musl:arm64
+          
       - name: Setup Rust
         uses: actions-rs/toolchain@v1
         with:
